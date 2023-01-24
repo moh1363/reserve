@@ -7,6 +7,8 @@ use Carbon\Carbon;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Hekmatinasser\Verta\Verta;
+use App\Models\Product;
+use function Sodium\compare;
 
 class ReservationController extends Controller
 {
@@ -17,7 +19,8 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reserves=Reservation::orderBy('issue_date','asc')->paginate(10);
+        return view('reserve.index',compact('reserves'));
     }
 
     /**
@@ -38,9 +41,11 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
+        $products=Product::all();
+
         $validated = $request->validate([
             'load_number' => 'required|unique:reservations|numeric',
-//            'row' => 'required|unique:reservations|numeric',
+            'row' => 'unique:reservations|numeric',
 //            'car_number' => 'required',
             'product_type' => 'required',
             'issue_date' => 'required',
@@ -55,14 +60,17 @@ class ReservationController extends Controller
         $arr=[$a,$b,$c,$d,$e];
         $loadrow->car_number = implode('',$arr);
         $loadrow->load_number = $request->load_number;
+        $loadrow->driver_name = $request->driver_name;
+        $loadrow->membership_number = $request->membership_number;
+        $loadrow->load_number = $request->load_number;
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
         $loadrow->tracking_number = $request->tracking_number;
-        $p_row = Reservation::orderBy('row', 'asc')->get()->last();
+        $p_row = Reservation::get()->last();
         if ($p_row) {
             $loadrow->row = ($p_row->row) + 1;
         } else {
-            $row = "000000";
+            $row = 1;
         }
         $carnumber = Reservation::where('car_number', implode('',$arr))->update([
             'status' => 0
@@ -73,7 +81,7 @@ class ReservationController extends Controller
 
 
 //
-        return redirect('/');
+        return view('/print',compact('loadrow'));
     }
 
     /**
@@ -82,9 +90,11 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        //
+        $loadrow=Reservation::find($id);
+        return view('/print',compact('loadrow'));
+
     }
 
     /**
@@ -105,9 +115,43 @@ class ReservationController extends Controller
      * @param  \App\Models\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
-        //
+        $products=Product::all();
+
+        $validated = $request->validate([
+            'load_number' => 'required|unique:reservations|numeric',
+            'row' => 'unique:reservations|numeric',
+//            'car_number' => 'required',
+            'product_type' => 'required',
+            'issue_date' => 'required',
+            'tracking_number' => 'required|numeric',
+        ]);
+        $loadrow = Reservation::find($id);
+        $a=$request->twonumber;
+        $b=$request->alefba;
+        $c=$request->threenumber;
+        $d=$request->country;
+        $e=$request->city;
+        $arr=[$a,$b,$c,$d,$e];
+        $loadrow->car_number = implode('',$arr);
+        $loadrow->load_number = $request->load_number;
+        $loadrow->driver_name = $request->driver_name;
+        $loadrow->membership_number = $request->membership_number;
+        $loadrow->load_number = $request->load_number;
+        $loadrow->product_type = $request->product_type;
+        $loadrow->issue_date = verta()->format('Y/m/d');
+        $loadrow->tracking_number = $request->tracking_number;
+        $p_row = Reservation::get()->last();
+        if ($p_row) {
+            $loadrow->row = ($p_row->row) + 1;
+        } else {
+            $row = 1;
+        }
+        $carnumber = Reservation::where('car_number', implode('',$arr))->update([
+            'status' => 0
+        ]);
+        $loadrow->save();
     }
 
     /**

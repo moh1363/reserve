@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">{{ __('Dashboard') }}</div>
 
-
-            <div class="col-md-6">
-
+                    <div class="card-body">
                 <form method="post" action="{{route('row.store')}}">
                     @csrf
                     @if ($errors->any())
@@ -66,9 +67,9 @@
                     <div class="form-group">
                         <label for="product_type">نوع فرآورده</label>
                         <select name="product_type" class="form-control">
-                                <option id="naft1" value="1">نفت</option>
-                                <option id="gas1" value="2">بنزین</option>
-                                <option id="naftgas1" value="3">نفت گاز</option>
+                            @foreach($products as $product)
+                                <option id="naft1" value="{{$product->name}}">{{$product->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -76,6 +77,14 @@
                         <label hidden for="product_type" id="gas" style="display: none">50/000/000 ریال</label>
                         <label hidden for="product_type" id="naft-gas" style="display: none">50/000/000 ریال</label>
 
+                    </div>
+                    <div class="form-group">
+                        <label for="membership_number">شماره عضویت :</label>
+                        <input name="membership_number" type="text" class="form-control" id="membership_number" aria-describedby="emailHelp"  >
+                    </div>
+                    <div class="form-group">
+                        <label for="driver_name">نام راننده :</label>
+                        <input name="driver_name" type="text" class="form-control" id="driver_name" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
                         <label for="issue_date">تاریخ صدور:</label>
@@ -92,6 +101,9 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
+
 
     <script>
         $(document).ready(function() {

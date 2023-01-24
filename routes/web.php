@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +16,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products=Product::all();
+
+    return view('welcome',compact('products'));
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('reserrve',[\App\Http\Controllers\ReservationController::class,'store'])->name('row.store');
+Route::get('list',[\App\Http\Controllers\ReservationController::class,'index'])->name('reserve.index');
+Route::get('list/{id}',[\App\Http\Controllers\ReservationController::class,'show'])->name('reserve.show');
+Route::get('/product',[\App\Http\Controllers\ProductController::class,'index'])->name('product.index');
+Route::post('/product',[\App\Http\Controllers\ProductController::class,'store'])->name('product.store');
+Route::delete('/product/delete/{id}',[\App\Http\Controllers\ProductController::class,'destroy'])->name('product.destroy');
+Route::patch('/product/update/{id}',[\App\Http\Controllers\ProductController::class,'update'])->name('product.update');

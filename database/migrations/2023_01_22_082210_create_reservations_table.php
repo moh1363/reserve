@@ -19,9 +19,12 @@ return new class extends Migration
             $table->string('load_number');
             $table->string('product_type');
             $table->string('issue_date');
+            $table->string('driver_name');
+            $table->string('membership_number');
             $table->string('tracking_number');
-            $table->string('row')->default(000000);
+            $table->string('row')->default(1)->unique();
             $table->string('status')->default(1);
+
             $table->softDeletes();
             $table->timestamps();
         });
