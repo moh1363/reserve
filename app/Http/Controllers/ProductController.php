@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('product.edit',compact('product'));
     }
 
     /**
@@ -73,9 +73,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $product=Product::find($id);
+//        $product=Product::find($id);
         $product->name=$request->name;
         $product->price=$request->price;
         $product->update();
@@ -88,9 +88,9 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        $product=Product::find($id)->delete();
+        $product->delete();
         return redirect(route('product.index'))->with('warning','');
     }
 }
