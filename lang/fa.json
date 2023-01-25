@@ -1,0 +1,37 @@
+{
+    "logout": "خروج",
+    "username": "نام کاربری",
+    "password": "رمز عبور",
+    "login": "ورود",
+    "action": "عملیات",
+    "nodata": "داده ای برای نمایش وجود ندارد",
+
+    "menu": "منو",
+    "edit" : "ویرایش",
+    "create" : "ایجاد",
+    "delete" : "حذف",
+
+    "users": "کاربران",
+    "users.index": "لیست کاربران",
+    "users.new": "ساخت کاربر جدید",
+    "users.edit": "ویرایش کاربر",
+    "users.show": "مشاهده کاربر",
+
+    "users.personnel_id": "شماره پرسنلی",
+    "users.firstname": "نام",
+    "users.lastname": "نام خانوادگی",
+    "users.email": "پست الکترونیک",
+
+
+    "product": "فرآورده",
+    "product.managment": "مدیریت فرآورده ها",
+    "product.name": "نام فرآورده",
+    "product.price": "قیمت فرآورده",
+    "product.edit": "ویرایش فرآورده",
+    "product.create": "ایجاد فرآورده",
+    "row1": "ردیف"
+
+
+
+
+}

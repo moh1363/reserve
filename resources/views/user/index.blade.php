@@ -1,7 +1,5 @@
 @extends('layouts.app')
-@section('title')
-    {{__('product.managment')}}
-@endsection
+
 @section('content')
 
 
@@ -14,11 +12,11 @@
                 <div class="card">
                     <div class="card-header">
                         <button style="float: left" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" title="{{__('product.create')}}">
+                                data-bs-target="#exampleModal">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
 
-                    {{__('product.managment')}}
+                        }}
                     </div>
 
                     <div class="card-body">
@@ -26,10 +24,10 @@
                             <table class="table table-responsive table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>{{__('row1')}}</th>
-                                    <th>{{__('product.name')}}</th>
-                                    <th>{{__('product.price')}}</th>
-                                    <th>{{__('action')}}</th>
+                                    <th>ردیف</th>
+                                    <th>نام فرآورده</th>
+                                    <th>قیمت</th>
+                                    <th>عملیات</th>
                                 </tr>
                                 </thead>
 
@@ -39,7 +37,7 @@
                                 @endphp
                                 @if(count($products)==0)
                                     <tr>
-                                        {{__('nodata')}}
+                                        داده ای برای نمایش وجد ندارد
                                     </tr>
                                 @else
                                     @foreach($products as $product)
@@ -51,7 +49,7 @@
                                             <td>
 
                                                 <a href=""data-bs-toggle="modal"
-                                                   data-bs-target="#exampleModal1" title="{{__('edit')}}">
+                                                   data-bs-target="#exampleModal1">
                                                     <i class="fa fa-edit" aria-hidden="true"></i></a>
 
 
@@ -61,7 +59,7 @@
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">{{__('product.edit')}}</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">ایجاد چشم انداز</h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
@@ -82,18 +80,18 @@
                                                                 @csrf
 
                                                                 <input hidden size="4" name="row">
-                                                                <label for="name">{{__('product.name')}}</label><br>
+                                                                <label for="name">نام فرآورده</label><br>
 
                                                                 <input required id="name" size="60px" name="name" value="{{$product->name}}">
                                                                 <br>
-                                                                <label for="price">{{__('product.price')}}</label><br>
+                                                                <label for="price">قیمت</label><br>
 
                                                                 <input required id="price" name="price" value="{{$product->price}}">
                                                                 {{--                        <button size="5" type="submit">ایجاد</button>--}}
 
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                                                                    <button type="submit" class="btn btn-primary">{{__('edit')}}</button>
+                                                                    <button type="submit" class="btn btn-primary">ویرایش</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -103,7 +101,7 @@
                                             </div>
 
 
-                                                <a title="{{__('delete')}}" href="" data-bs-toggle="modal" data-bs-target="#deleteModal" data-productid="{{$product['id']}}"><i class="fas fa-trash-alt"></i></a>
+                                                <a title="حذف" href="" data-bs-toggle="modal" data-bs-target="#deleteModal" data-productid="{{$product['id']}}"><i class="fas fa-trash-alt"></i></a>
                                                 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -154,7 +152,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{__('product.create')}}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">ایجاد چشم انداز</h5>
                     <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -176,18 +174,18 @@
                         @csrf
 
                         <input hidden size="4" name="row">
-                        <label for="name">{{__('product.name')}}</label><br>
+                        <label for="name">نام فرآورده</label><br>
 
                         <input required id="name" size="60px" name="name">
                         <br>
-                        <label for="price">{{__('product.price')}}</label><br>
+                        <label for="price">قیمت</label><br>
 
                         <input required id="price" name="price" data-jdp>
                         {{--                        <button size="5" type="submit">ایجاد</button>--}}
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary">{{__('create')}}</button>
+                            <button type="submit" class="btn btn-primary">ایجاد</button>
                         </div>
                     </form>
                 </div>

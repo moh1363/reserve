@@ -50,6 +50,8 @@ class ReservationController extends Controller
             'product_type' => 'required',
             'issue_date' => 'required',
             'tracking_number' => 'required|numeric',
+            'driver_name' => 'required',
+            'membership_number' => 'required',
         ]);
         $loadrow = new Reservation();
         $a=$request->twonumber;
@@ -126,6 +128,8 @@ class ReservationController extends Controller
             'product_type' => 'required',
             'issue_date' => 'required',
             'tracking_number' => 'required|numeric',
+            'driver_name' => 'required',
+            'membership_number' => 'required',
         ]);
         $loadrow = Reservation::find($id);
         $a=$request->twonumber;

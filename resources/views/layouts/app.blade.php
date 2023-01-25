@@ -7,13 +7,13 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <title>@yield('title')</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('/fontawesome/css/fontawesome-all.css')}}">
+    <link rel="stylesheet" href="{{asset('/css/pelak.css')}}">
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -86,6 +86,8 @@
         </nav>
 
         <main class="py-4" dir="rtl">
+            @include('layouts.messages')
+            <di
 
             @yield('content')
         </main>

@@ -19,11 +19,11 @@ Route::get('/', function () {
     $products=Product::all();
 
     return view('welcome',compact('products'));
-});
+})->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('reserrve',[\App\Http\Controllers\ReservationController::class,'store'])->name('row.store');
 Route::get('list',[\App\Http\Controllers\ReservationController::class,'index'])->name('reserve.index');
 Route::get('list/{id}',[\App\Http\Controllers\ReservationController::class,'show'])->name('reserve.show');

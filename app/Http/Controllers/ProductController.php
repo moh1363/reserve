@@ -36,11 +36,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $validation=$request->validate([
+            'name'=>'required',
+            'price'=>'required|numeric',
+        ]);
         $product=new Product();
         $product->name=$request->name;
         $product->price=$request->price;
         $product->save();
-        return redirect(route('product.index'))->with('success','');
+        return redirect(route('product.index'))->with('success','فرآورده با موفقیت ثبت گردید');
 
     }
 
@@ -75,11 +79,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $validation=$request->validate([
+            'name'=>'required',
+            'price'=>'required|numeric',
+        ]);
 //        $product=Product::find($id);
         $product->name=$request->name;
         $product->price=$request->price;
         $product->update();
-        return redirect(route('product.index'))->with('success','');
+        return redirect(route('product.index'))->with('success','فرآورده با موفقیت ویرایش گردید');
     }
 
     /**
@@ -91,6 +99,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect(route('product.index'))->with('warning','');
+        return redirect(route('product.index'))->with('warning','فرآورده با موفقیت حذف گردید');
     }
 }
