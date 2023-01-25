@@ -24,6 +24,19 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="codemelli" class="col-md-4 col-form-label text-md-end">{{ __('codemelli') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="codemelli" type="text" class="form-control @error('codemelli') is-invalid @enderror" name="codemelli" value="{{ old('codemelli') }}" required autocomplete="codemelli" autofocus>
+
+                                @error('codemelli')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
@@ -38,7 +51,11 @@
                                 @enderror
                             </div>
                         </div>
-
+                        <label for="role">{{__('user.role')}}</label><br>
+                        <select name="role">
+                            <option value="1">{{__('user.admin')}}</option>
+                            <option value="2">{{__('user.operator')}}</option>
+                        </select>
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 

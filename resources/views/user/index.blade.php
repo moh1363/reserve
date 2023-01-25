@@ -1,11 +1,8 @@
 @extends('layouts.app')
-
+@section('title')
+    {{__('user.index')}}
+@endsection
 @section('content')
-
-
-
-
-
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -16,7 +13,8 @@
                             <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
 
-                        }}
+                        {{__('user.index')}}
+
                     </div>
 
                     <div class="card-body">
@@ -24,10 +22,10 @@
                             <table class="table table-responsive table-bordered">
                                 <thead>
                                 <tr>
-                                    <th>ردیف</th>
-                                    <th>نام فرآورده</th>
-                                    <th>قیمت</th>
-                                    <th>عملیات</th>
+                                    <th>{{__('row1')}}</th>
+                                    <th>{{__('user.name')}}</th>
+                                    <th>{{__('user.codemell')}}</th>
+                                    <th>{{__('access')}}</th>
                                 </tr>
                                 </thead>
 
@@ -35,38 +33,40 @@
                                 @php
                                     $i=1;
                                 @endphp
-                                @if(count($products)==0)
+                                @if(count($users)==0)
                                     <tr>
-                                        داده ای برای نمایش وجد ندارد
+                                        <td colspan="9">{{__('nodata')}}</td>
+
                                     </tr>
                                 @else
-                                    @foreach($products as $product)
+                                    @foreach($users as $user)
                                         <tr>
 
                                             <td>{{$i++}}</td>
-                                            <td>{{$product->name}}</td>
-                                            <td>{{$product->price}}</td>
+                                            <td>{{$user->name}}</td>
+                                            <td>{{$user->codemelli}}</td>
+                                            <td>{{$user->role}}</td>
                                             <td>
 
-                                                <a href=""data-bs-toggle="modal"
-                                                   data-bs-target="#exampleModal1">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"
+                                                   data-bs-target="#edituser{{$user->id}}" title="{{__('edit')}}"
+                                                   href="{{route('users.update',$user->id)}}"><i class="fa fa-edit"></i></a>
 
-
-                                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+{{--                                                edit modal--}}
+                                            <div class="modal fade" id="edituser{{$user->id}}" tabindex="-1" role="dialog"
                                                  aria-labelledby="exampleModalLabel"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">ایجاد چشم انداز</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">{{__('user.edit')}}</h5>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                     aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="{{route('product.update',$product->id)}}" method="post">
+                                                            <form action="{{route('users.update',$user->id)}}" method="post">
                                                                 @method('patch')
                                                                 @if ($errors->any())
                                                                     <div class="alert alert-danger">
@@ -79,14 +79,20 @@
                                                                 @endif
                                                                 @csrf
 
-                                                                <input hidden size="4" name="row">
-                                                                <label for="name">نام فرآورده</label><br>
 
-                                                                <input required id="name" size="60px" name="name" value="{{$product->name}}">
+                                                                <label for="name">{{__('user.name')}}</label><br>
+                                                                <input required id="name" size="60px" name="name" value="{{$user->name}}">
                                                                 <br>
-                                                                <label for="price">قیمت</label><br>
 
-                                                                <input required id="price" name="price" value="{{$product->price}}">
+                                                                <label for="codemelli">{{__('user.codemelli')}}</label><br>
+                                                                <input required id="price" name="codemelli" value="{{$user->codemelli}}">
+                                                                <br>
+
+                                                                <label for="role">{{__('user.role')}}</label><br>
+                                                                <select name="role">
+                                                                    <option value="1">{{__('user.admin')}}</option>
+                                                                    <option value="2">{{__('user.operator')}}</option>
+                                                                </select>
                                                                 {{--                        <button size="5" type="submit">ایجاد</button>--}}
 
                                                                 <div class="modal-footer">
@@ -99,22 +105,23 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
-                                                <a title="حذف" href="" data-bs-toggle="modal" data-bs-target="#deleteModal" data-productid="{{$product['id']}}"><i class="fas fa-trash-alt"></i></a>
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"
+                                                   data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"
+                                                   href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>
+{{--                                                <a title="{{__('user.delete')}}" href="{{route('users.destroy',$user->id)}}" data-bs-toggle="modal" data-bs-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>--}}
+                                                <div class="modal fade" id="deleteuser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                                                                <h5 class="modal-title" id="exampleModalLabel">{{__('user.delete')}}</h5>
                                                                 <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true">×</span>
                                                                 </button>
                                                             </div>
-                                                            <div class="modal-body">فرآورده انتخاب شده حذف گردد؟</div>
+                                                            <div class="modal-body">کاربر انتخاب شده حذف گردد؟</div>
                                                             <div class="modal-footer">
                                                                 <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">انصراف</button>
-                                                                <form method="POST" action="{{route('product.destroy',$product->id)}}">
+                                                                <form method="POST" action="{{route('users.destroy',$user->id)}}">
                                                                     @method('DELETE')
                                                                     @csrf
                                                                     {{-- <input type="hidden" id="role_id" name="role_id" value=""> --}}
@@ -125,11 +132,6 @@
                                                     </div>
                                                 </div>
 
-                                            {{--                                            <a title="نمایش" href="/users/{{ $user['id'] }}"><i class="fa fa-eye"></i></a>--}}
-
-                                                {{--                                        <a data-id="{{$product->id}}" data-toggle="modal"--}}
-                                                {{--                                           data-target="#editproduct{{$product->id}}" title="ویرایش"--}}
-                                                {{--                                           href="#"><i class="fa fa-edit"></i></a>--}}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -152,7 +154,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">ایجاد چشم انداز</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{__('user.create')}}</h5>
                     <button type="button" class="close" data-bs-dismiss="modal"
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -161,7 +163,7 @@
 {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('product.store')}}" method="post">
+                    <form action="{{route('users.store')}}" method="post">
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -173,19 +175,23 @@
                         @endif
                         @csrf
 
-                        <input hidden size="4" name="row">
-                        <label for="name">نام فرآورده</label><br>
+                            <label for="name">{{__('user.name')}}</label><br>
+                            <input required id="name" size="60px" name="name" >
+                            <br>
 
-                        <input required id="name" size="60px" name="name">
-                        <br>
-                        <label for="price">قیمت</label><br>
+                            <label for="codemelli">{{__('user.codemelli')}}</label><br>
+                            <input required id="price" name="codemelli" >
+                            <br>
 
-                        <input required id="price" name="price" data-jdp>
-                        {{--                        <button size="5" type="submit">ایجاد</button>--}}
-
+                            <label for="role">{{__('user.role')}}</label><br>
+                            <select name="role">
+                                <option value="1">{{__('user.admin')}}</option>
+                                <option value="2">{{__('user.operator')}}</option>
+                            </select>
+{{--                            <input required id="price" name="role" >--}}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary">ایجاد</button>
+                            <button type="submit" class="btn btn-primary">{{__('create')}}</button>
                         </div>
                     </form>
                 </div>
