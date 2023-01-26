@@ -103,6 +103,7 @@ return array(
         "first_name" => "نام",
         "firstname" => "نام",
         "last_name" => "نام خانوادگی",
+        "codemelli" => "کدملی",
         "lastname" => "نام خانوادگی",
         "password" => "رمز عبور",
         "password_confirmation" => "تاییدیه ی رمز عبور",

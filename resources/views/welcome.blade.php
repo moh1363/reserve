@@ -116,41 +116,38 @@
 {{--                        <input name="car_number" type="text" class="form-control" id="car_number" aria-describedby="emailHelp"  >--}}
                     </div>
                     <div class="form-group">
-                        <label for="load_number">شماره بارنامه :</label>
+                        <label for="load_number">{{__('load.number')}}</label>
                         <input name="load_number" type="text" class="form-control" id="load_number" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
-                        <label for="product_type">نوع فرآورده</label>
-                        <select name="product_type" class="form-select">
+                        <label for="product_type">{{__('product.type')}}</label>
+                        <select  id="AddrType" name="product_type" class="form-select">
                             @foreach($products as $product)
                                 <option id="naft1" value="{{$product->name}}">{{$product->name}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="product_type" id="naft" style="display: none">50/000/000 ریال</label>
-                        <label hidden for="product_type" id="gas" style="display: none">50/000/000 ریال</label>
-                        <label hidden for="product_type" id="naft-gas" style="display: none">50/000/000 ریال</label>
+                    <h1 id="stateText">sfsdfdsf</h1>
 
-                    </div>
                     <div class="form-group">
-                        <label for="membership_number">شماره عضویت :</label>
+                        <label for="membership_number">{{__('membership.number')}}</label>
                         <input name="membership_number" type="text" class="form-control" id="membership_number" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
-                        <label for="driver_name">نام راننده :</label>
+                        <label for="driver_name">{{__('driver.name')}}</label>
                         <input name="driver_name" type="text" class="form-control" id="driver_name" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
-                        <label for="issue_date">تاریخ صدور:</label>
+                        <label for="issue_date">{{__('issue.date')}}</label>
                         <input name="issue_date" type="text" class="form-control" id="issue_date" value="{{verta()->format('Y/m/d')}}" readonly aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
-                        <label for="tracking_number">شماره پیگیری تراکنش :</label>
+                        <label for="tracking_number">{{__('tracking.number')}}</label>
                         <input name="tracking_number" type="text" class="form-control" id="tracking_number" aria-describedby="emailHelp"  >
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary">ثبت</button>
+                    <button  type="submit" class="btn btn-primary">{{__('reg')}}</button>
+
                 </form>
 
             </div>
@@ -158,8 +155,18 @@
     </div>
         </div>
     </div>
+    <script type='text/javascript'>
+
+        $(document).ready(function(){
+            $('#AddrType').change(function(){
+                if ($(this).val() == 'نفتگاز') {
+                    $('#stateText').css({'display':'block'});
+                }
+            });
+        });
 
 
+    </script>
     <script>
         $(document).ready(function() {
 

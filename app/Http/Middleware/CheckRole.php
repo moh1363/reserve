@@ -20,7 +20,7 @@ class CheckRole
         if (auth()->user()->role == 1){
         return $next($request);}
         else{
-            return redirect()->back()->with('warning','noaccess');
+            return redirect(route('home'))->with('warning','شمابه این صفحه دسترسی ندارید');
         }
     }
 }

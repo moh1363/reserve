@@ -1,8 +1,10 @@
 {
-    "logout": "خروج",
+    "admin": "مدیر",
+    "operator": "اپراتور",
+    "logout1": "خروج",
     "username": "نام کاربری",
     "password": "رمز عبور",
-    "login": "ورود",
+    "login1": "ورود",
     "action": "عملیات",
     "nodata": "داده ای برای نمایش وجود ندارد",
 
@@ -27,15 +29,35 @@
     "users.firstname": "نام",
     "users.lastname": "نام خانوادگی",
     "users.email": "پست الکترونیک",
+    "access": "دسترسی",
 
 
     "product": "فرآورده",
     "product.managment": "مدیریت فرآورده ها",
     "product.name": "نام فرآورده",
+    "product.type": "نوع فرآورده",
     "product.price": "قیمت فرآورده",
     "product.edit": "ویرایش فرآورده",
     "product.create": "ایجاد فرآورده",
-    "row1": "ردیف"
+    "row1": "ردیف",
+
+
+    "car.number": "شماره نفتکش",
+    "load.number": "شماره بارنامه",
+    "issue.date": "تاریخ صدور",
+    "membership.number": "شماره عضویت",
+    "driver.name": "نام راننده",
+    "tracking.number": "شماره پیگیری تراکنش",
+    "reg": "ثبت",
+    "row": "شماره نوبت",
+
+
+    "Old.Password": "رمز عبور کنونی",
+    "New.Password": "رمز عبور جدید",
+    "Confirm.New.Password": "رمز عبور جدید",
+    "Chnage.Password": "تغییر رمز عبور",
+    "change": "تغییر "
+
 
 
 

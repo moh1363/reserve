@@ -45,7 +45,12 @@
                                             <td>{{$i++}}</td>
                                             <td>{{$user->name}}</td>
                                             <td>{{$user->codemelli}}</td>
-                                            <td>{{$user->role}}</td>
+                                            <td>
+                                                @if($user->role==1)
+                                                   {{__('admin')}}
+                                                @elseif($user->role==2)
+                                            {{__('operator')}}
+                                                @endif</td>
                                             <td>
 
                                                 <a data-id="{{$user->id}}" data-bs-toggle="modal"
@@ -85,7 +90,7 @@
                                                                 <br>
 
                                                                 <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                                                                <input required id="price" name="codemelli" value="{{$user->codemelli}}">
+                                                                <input minlength="10" maxlength="10" required id="price" name="codemelli" value="{{$user->codemelli}}">
                                                                 <br>
 
                                                                 <label for="role">{{__('user.role')}}</label><br>
@@ -105,6 +110,8 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            @if(!(auth()->user()->id==$user->id) or auth()->user()->role==2)
                                                 <a data-id="{{$user->id}}" data-bs-toggle="modal"
                                                    data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"
                                                    href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>
@@ -131,7 +138,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
+@endif
                                             </td>
                                         </tr>
                                     @endforeach
@@ -176,11 +183,11 @@
                         @csrf
 
                             <label for="name">{{__('user.name')}}</label><br>
-                            <input required id="name" size="60px" name="name" >
+                            <input required  id="name" size="60px" name="name" >
                             <br>
 
                             <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                            <input required id="price" name="codemelli" >
+                            <input minlength="10" maxlength="10" required id="price" name="codemelli" >
                             <br>
 
                             <label for="role">{{__('user.role')}}</label><br>

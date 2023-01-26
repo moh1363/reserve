@@ -36,6 +36,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $user=new User();
         $user->name=$request->name;
         $user->role=$request->role;
@@ -81,7 +82,7 @@ class UserController extends Controller
         $user->name=$request->name;
         $user->role=$request->role;
         $user->codemelli=$request->codemelli;
-        $user->password=$this->password;
+//        $user->password=$this->password;
         $user->save();
         return redirect(route('users.index'))->with('success','کاربر انتخاب شده با موفقیت ویرایش گردید');
     }
