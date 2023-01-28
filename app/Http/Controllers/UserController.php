@@ -94,7 +94,19 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user=User::find($id);
+        if ($user){
+            return response()->json([
+                'status'=>200,
+                'user'=>$user,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>400,
+                'user'=>'kkjhk',
+            ]);
+        }
     }
 
     /**
@@ -106,13 +118,45 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);
-        $user->name=$request->name;
-        $user->role=$request->role;
-        $user->codemelli=$request->codemelli;
-//        $user->password=$this->password;
-        $user->save();
-        return redirect(route('users.index'))->with('success','کاربر انتخاب شده با موفقیت ویرایش گردید');
+        $user = User::find($id);
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:products',
+            'role' => 'required|numeric',
+            'codemelli' => 'required|numeric||digits-between:10,10|unique:users,codemelli,'.$id
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
+        else {
+            $user = User::find($id);
+            if ($user) {
+                $user->name = $request->name;
+                $user->role = $request->role;
+                $user->codemelli = $request->codemelli;
+                $user->update();
+                return response()->json([
+                    'status' => 200,
+                    'message' => 'ویرایش کاربر با موفقیت انجام شد',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => 404,
+                    'user' => 'kkjhk',
+                ]);
+            }
+        }
+
+
+
+
+
+
+
+
     }
 
     /**

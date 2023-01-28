@@ -33,3 +33,5 @@ Route::resource('users',\App\Http\Controllers\UserController::class)->middleware
 Route::get('/changepassword', [App\Http\Controllers\HomeController::class, 'changePassword'])->name('change-password');
 Route::post('/changepassword', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('update-password');
 Route::get('/fetch-user',[UserController::class,'fetchuser']);
+Route::get('/edit-user/{id}',[UserController::class,'edit'])->name('editt');
+Route::put('/update-user/{id}',[UserController::class,'update']);
