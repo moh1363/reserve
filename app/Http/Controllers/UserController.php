@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -18,6 +20,14 @@ class UserController extends Controller
         return view('user.index',compact('users'));
     }
 
+    public function fetchuser()
+    {
+        $users=User::all();
+        return response()->json([
+            'users'=>$users
+        ]);
+        return view('user.index',compact('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -36,14 +46,32 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $validator=Validator::make($request->all(),[
+            'name'=>'required|unique:products',
+            'role'=>'required|numeric',
+            'codemelli'=>'required|numeric|unique:users|digits-between:10,10',
+        ]);
+        if ($validator->fails())
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        }
+        else
+        {
+            $user=new User();
+            $user->name=$request->name;
+            $user->role=$request->role;
+            $user->codemelli=$request->codemelli;
+            $user->password = bcrypt('12345678');
+            $user->save();
+            return response()->json([
+                'status'=>200,
+                'message'=>'success','ok',
+            ]);
 
-        $user=new User();
-        $user->name=$request->name;
-        $user->role=$request->role;
-        $user->codemelli=$request->codemelli;
-        $user->password = bcrypt('12345678');
-        $user->save();
-        return redirect(route('users.index'))->with('success','کاربر انتخاب شده با موفقیت ایجاد گردید');
+        }
 
     }
 

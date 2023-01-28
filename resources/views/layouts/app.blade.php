@@ -6,7 +6,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title')</title>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -14,8 +13,12 @@
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('/fontawesome/css/fontawesome-all.css')}}">
     <link rel="stylesheet" href="{{asset('/css/pelak.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+{{--    @vite(['resources/sass/app.scss', 'resources/js/app.js'])--}}
 </head>
 <body  style="font-family: 'B Yekan'" dir="rtl">
     <div id="app">
@@ -111,6 +114,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+{{--    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>--}}
 </body>
 </html>

@@ -6,6 +6,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div id="success_message"></div>
+
                 <div class="card">
                     <div class="card-header">
                         <button style="float: left" type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -24,8 +26,9 @@
                                 <tr>
                                     <th>{{__('row1')}}</th>
                                     <th>{{__('user.name')}}</th>
-                                    <th>{{__('user.codemell')}}</th>
+                                    <th>{{__('user.codemelli')}}</th>
                                     <th>{{__('access')}}</th>
+                                    <th>{{__('action')}}</th>
                                 </tr>
                                 </thead>
 
@@ -40,107 +43,107 @@
                                     </tr>
                                 @else
                                     @foreach($users as $user)
-                                        <tr>
+{{--                                        <tr>--}}
 
-                                            <td>{{$i++}}</td>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->codemelli}}</td>
-                                            <td>
-                                                @if($user->role==1)
-                                                   {{__('admin')}}
-                                                @elseif($user->role==2)
-                                            {{__('operator')}}
-                                                @endif</td>
-                                            <td>
+{{--                                            <td>{{$i++}}</td>--}}
+{{--                                            <td>{{$user->name}}</td>--}}
+{{--                                            <td>{{$user->codemelli}}</td>--}}
+{{--                                            <td>--}}
+{{--                                                @if($user->role==1)--}}
+{{--                                                    {{__('admin')}}--}}
+{{--                                                @elseif($user->role==2)--}}
+{{--                                                    {{__('operator')}}--}}
+{{--                                                @endif</td>--}}
+{{--                                            <td>--}}
 
-                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"
-                                                   data-bs-target="#edituser{{$user->id}}" title="{{__('edit')}}"
-                                                   href="{{route('users.update',$user->id)}}"><i class="fa fa-edit"></i></a>
+{{--                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
+{{--                                                   data-bs-target="#edituser{{$user->id}}" title="{{__('edit')}}"--}}
+{{--                                                   href="{{route('users.update',$user->id)}}"><i class="fa fa-edit"></i></a>--}}
 
-{{--                                                edit modal--}}
-                                            <div class="modal fade" id="edituser{{$user->id}}" tabindex="-1" role="dialog"
-                                                 aria-labelledby="exampleModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">{{__('user.edit')}}</h5>
-                                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{route('users.update',$user->id)}}" method="post">
-                                                                @method('patch')
-                                                                @if ($errors->any())
-                                                                    <div class="alert alert-danger">
-                                                                        <ul>
-                                                                            @foreach ($errors->all() as $error)
-                                                                                <li>{{ $error }}</li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    </div>
-                                                                @endif
-                                                                @csrf
+{{--                                                --}}{{--                                                edit modal--}}
+{{--                                                <div class="modal fade" id="edituser{{$user->id}}" tabindex="-1" role="dialog"--}}
+{{--                                                     aria-labelledby="exampleModalLabel"--}}
+{{--                                                     aria-hidden="true">--}}
+{{--                                                    <div class="modal-dialog" role="document">--}}
+{{--                                                        <div class="modal-content">--}}
+{{--                                                            <div class="modal-header">--}}
+{{--                                                                <h5 class="modal-title" id="exampleModalLabel">{{__('user.edit')}}</h5>--}}
+{{--                                                                <button type="button" class="close" data-bs-dismiss="modal"--}}
+{{--                                                                        aria-label="Close">--}}
+{{--                                                                    <span aria-hidden="true">&times;</span>--}}
+{{--                                                                </button>--}}
+{{--                                                            </div>--}}
+{{--                                                            <div class="modal-body">--}}
+{{--                                                                <form action="{{route('users.update',$user->id)}}" method="post">--}}
+{{--                                                                    @method('patch')--}}
+{{--                                                                    @if ($errors->any())--}}
+{{--                                                                        <div class="alert alert-danger">--}}
+{{--                                                                            <ul>--}}
+{{--                                                                                @foreach ($errors->all() as $error)--}}
+{{--                                                                                    <li>{{ $error }}</li>--}}
+{{--                                                                                @endforeach--}}
+{{--                                                                            </ul>--}}
+{{--                                                                        </div>--}}
+{{--                                                                    @endif--}}
+{{--                                                                    @csrf--}}
 
 
-                                                                <label for="name">{{__('user.name')}}</label><br>
-                                                                <input required id="name" size="60px" name="name" value="{{$user->name}}">
-                                                                <br>
+{{--                                                                    <label for="name">{{__('user.name')}}</label><br>--}}
+{{--                                                                    <input required id="name" size="60px" name="name" value="{{$user->name}}">--}}
+{{--                                                                    <br>--}}
 
-                                                                <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                                                                <input minlength="10" maxlength="10" required id="price" name="codemelli" value="{{$user->codemelli}}">
-                                                                <br>
+{{--                                                                    <label for="codemelli">{{__('user.codemelli')}}</label><br>--}}
+{{--                                                                    <input minlength="10" maxlength="10" required id="price" name="codemelli" value="{{$user->codemelli}}">--}}
+{{--                                                                    <br>--}}
 
-                                                                <label for="role">{{__('user.role')}}</label><br>
-                                                                <select name="role">
-                                                                    <option value="1">{{__('user.admin')}}</option>
-                                                                    <option value="2">{{__('user.operator')}}</option>
-                                                                </select>
-                                                                {{--                        <button size="5" type="submit">ایجاد</button>--}}
+{{--                                                                    <label for="role">{{__('user.role')}}</label><br>--}}
+{{--                                                                    <select name="role">--}}
+{{--                                                                        <option value="1">{{__('user.admin')}}</option>--}}
+{{--                                                                        <option value="2">{{__('user.operator')}}</option>--}}
+{{--                                                                    </select>--}}
+{{--                                                                    --}}{{--                        <button size="5" type="submit">ایجاد</button>--}}
 
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                                                                    <button type="submit" class="btn btn-primary">ویرایش</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
+{{--                                                                    <div class="modal-footer">--}}
+{{--                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>--}}
+{{--                                                                        <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>--}}
+{{--                                                                    </div>--}}
+{{--                                                                </form>--}}
+{{--                                                            </div>--}}
 
-                                                    </div>
-                                                </div>
-                                            </div>
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                </div>--}}
 
-                                            @if(!(auth()->user()->id==$user->id) or auth()->user()->role==2)
-                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"
-                                                   data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"
-                                                   href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>
-{{--                                                <a title="{{__('user.delete')}}" href="{{route('users.destroy',$user->id)}}" data-bs-toggle="modal" data-bs-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>--}}
-                                                <div class="modal fade" id="deleteuser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">{{__('user.delete')}}</h5>
-                                                                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">کاربر انتخاب شده حذف گردد؟</div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">انصراف</button>
-                                                                <form method="POST" action="{{route('users.destroy',$user->id)}}">
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                    {{-- <input type="hidden" id="role_id" name="role_id" value=""> --}}
-                                                                    <a class="btn btn-danger" onclick="$(this).closest('form').submit();">تایید</a>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-@endif
-                                            </td>
-                                        </tr>
+{{--                                                @if(!(auth()->user()->id==$user->id) or auth()->user()->role==2)--}}
+{{--                                                    <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
+{{--                                                       data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"--}}
+{{--                                                       href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>--}}
+{{--                                                    --}}{{--                                                <a title="{{__('user.delete')}}" href="{{route('users.destroy',$user->id)}}" data-bs-toggle="modal" data-bs-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>--}}
+{{--                                                    <div class="modal fade" id="deleteuser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--                                                        <div class="modal-dialog" role="document">--}}
+{{--                                                            <div class="modal-content">--}}
+{{--                                                                <div class="modal-header">--}}
+{{--                                                                    <h5 class="modal-title" id="exampleModalLabel">{{__('user.delete')}}</h5>--}}
+{{--                                                                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">--}}
+{{--                                                                        <span aria-hidden="true">×</span>--}}
+{{--                                                                    </button>--}}
+{{--                                                                </div>--}}
+{{--                                                                <div class="modal-body">کاربر انتخاب شده حذف گردد؟</div>--}}
+{{--                                                                <div class="modal-footer">--}}
+{{--                                                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">انصراف</button>--}}
+{{--                                                                    <form method="POST" action="{{route('users.destroy',$user->id)}}">--}}
+{{--                                                                        @method('DELETE')--}}
+{{--                                                                        @csrf--}}
+{{--                                                                        --}}{{-- <input type="hidden" id="role_id" name="role_id" value=""> --}}
+{{--                                                                        <a class="btn btn-danger" onclick="$(this).closest('form').submit();">تایید</a>--}}
+{{--                                                                    </form>--}}
+{{--                                                                </div>--}}
+{{--                                                            </div>--}}
+{{--                                                        </div>--}}
+{{--                                                    </div>--}}
+{{--                                                @endif--}}
+{{--                                            </td>--}}
+{{--                                        </tr>--}}
                                     @endforeach
                                 </tbody>
                                 @endif
@@ -166,45 +169,116 @@
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-{{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
-{{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                    {{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
+                    {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('users.store')}}" method="post">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @csrf
+                    <ul id="saveform_errlist"></ul>
 
-                            <label for="name">{{__('user.name')}}</label><br>
-                            <input required  id="name" size="60px" name="name" >
-                            <br>
 
-                            <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                            <input minlength="10" maxlength="10" required id="price" name="codemelli" >
-                            <br>
+                        <label for="name">{{__('user.name')}}</label><br>
+                        <input required  class="name" size="50px" name="name" >
+                        <br>
 
-                            <label for="role">{{__('user.role')}}</label><br>
-                            <select name="role">
-                                <option value="1">{{__('user.admin')}}</option>
-                                <option value="2">{{__('user.operator')}}</option>
-                            </select>
-{{--                            <input required id="price" name="role" >--}}
+                        <label for="codemelli">{{__('user.codemelli')}}</label><br>
+                        <input minlength="10" maxlength="10" required class="codemelli" name="codemelli" >
+                        <br>
+
+                        <label for="role">{{__('user.role')}}</label><br>
+                        <select name="role" class="role form-select" >
+                            <option value="1">{{__('user.admin')}}</option>
+                            <option value="2">{{__('user.operator')}}</option>
+                        </select>
+                        {{--                            <input required id="price" name="role" >--}}
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary">{{__('create')}}</button>
+                            <button  class="btn btn-primary btn-submit">{{__('create')}}</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            fetchuser();
+            function fetchuser(){
+                $.ajax({
+                    type :"GET",
+                    url : "fetch-user",
+                    dataType : "json",
+                    success : function (response) {
+                        // console.log(response.users)
+                        $('tbody').html("");
+                        $.each(response.users,function (key,item) {
+                            if(item.role==1){
+                                var role='مدیر';
+                            }else if(item.role==2){
+                                var role='اپراتور';
+                            }
+                            $('tbody').append( ' <tr>\
+                                <td>'+ {{$i++}}+'</td>\
+                                <td>'+item.name+'</td>\
+                                <td>'+item.codemelli+'</td>\
+                                <td>'+role+'</td>\
+                                <td><a href=""  value="'+item.id+'" ><i class="fa fa-edit"></i></a> <a href=""  value="'+item.id+'" ><i class="fa fa-trash"></i></a></td>\
+                                </tr>'
+                                    );
+                        });
+                    }
+
+                });
+            }
+            $(document).on('click','.btn-submit',function (e){
+                e.preventDefault();
+                // console.log("hello");
+                var data={
+                    'name' :$('.name').val(),
+                    'codemelli' :$('.codemelli').val(),
+                    'role' :$('.role').val(),
+                }
+                // console.log(data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type : "POST",
+                    url : "/users",
+                    data : data,
+                    dataType : "json",
+                    success :function (response) {
+                        // console.log(response);
+                        if(response.status == 400)
+                        {
+                            $('#saveform_errlist').html("");
+                            $('#saveform_errlist').addClass('alert alert-danger');
+
+                            $.each(response.errors,function (key,err_values){
+                                $('#saveform_errlist').append('<li>'+err_values+'</li>');
+
+                            });
+
+
+                        }
+                        else{
+                            $('#saveform_errlist').html("");
+
+                            $('#success_message').addClass('alert alert-success')
+                            $('#success_message').text(response.message)
+                            $('#exampleModal').modal('hide');
+                            $('#exampleModal').find('input').val("");
+                            fetchuser();
+
+                        }
+                    }
+                });
+
+
+
+            }) ;
+        });
+    </script>
 
 @endsection

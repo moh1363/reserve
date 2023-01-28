@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -36,15 +37,39 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validation=$request->validate([
-            'name'=>'required',
+        $validator=Validator::make($request->all(),[
+            'name'=>'required|unique:products',
             'price'=>'required|numeric',
         ]);
-        $product=new Product();
-        $product->name=$request->name;
-        $product->price=$request->price;
-        $product->save();
-        return redirect(route('product.index'))->with('success','فرآورده با موفقیت ثبت گردید');
+        if ($validator->fails())
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        }
+            else
+            {
+             $product=new Product();
+             $product->name=$request->input('name');
+             $product->price=$request->input('price');
+             $product->save();
+                return response()->json([
+                    'status'=>200,
+                    'message'=>'ok',
+                ]);
+
+            }
+
+//        $validation=$request->validate([
+//            'name'=>'required',
+//            'price'=>'required|numeric',
+//        ]);
+//        $product=new Product();
+//        $product->name=$request->name;
+//        $product->price=$request->price;
+//        $product->save();
+//        return redirect(route('product.index'))->with('success','فرآورده با موفقیت ثبت گردید');
 
     }
 
@@ -80,8 +105,8 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $validation=$request->validate([
-            'name'=>'required',
-            'price'=>'required|numeric',
+            'name'=>'required|numeric',
+            'price'=>'required',
         ]);
 //        $product=Product::find($id);
         $product->name=$request->name;

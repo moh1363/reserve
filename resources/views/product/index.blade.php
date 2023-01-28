@@ -11,6 +11,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                <div id="success_message"></div>
                 <div class="card">
                     <div class="card-header">
                         <button style="float: left" type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -163,37 +164,73 @@
 {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body">
-                    <form action="{{route('product.store')}}" method="post">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        @csrf
+                    <ul id="saveform_errlist"></ul>
 
-                        <input hidden size="4" name="row">
                         <label for="name">{{__('product.name')}}</label><br>
-
-                        <input required id="name" size="60px" name="name">
+                        <input  class="name" size="50px" name="name">
                         <br>
-                        <label for="price">{{__('product.price')}}</label><br>
 
-                        <input required id="price" name="price" data-jdp>
-                        {{--                        <button size="5" type="submit">ایجاد</button>--}}
+
+                        <label for="price">{{__('product.price')}}</label><br>
+                        <input  class="price" name="price" >
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                            <button type="submit" class="btn btn-primary">{{__('create')}}</button>
+                            <button   class="btn btn-primary btn-submit">{{__('create')}}</button>
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+           $(document).on('click','.btn-submit',function (e){
+               e.preventDefault();
+               // console.log("hello");
+               var data={
+                   'name' :$('.name').val(),
+                   'price' :$('.price').val(),
+               }
+               // console.log(data);
+               $.ajaxSetup({
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   }
+               });
+               $.ajax({
+                  type : "POST",
+                  url : "/product",
+                  data : data,
+                   dataType : "json",
+                   success :function (response) {
+                      // console.log(response);
+                       if(response.status == 400)
+                       {
+                           $('#saveform_errlist').html("");
+                           $('#saveform_errlist').addClass('alert alert-danger');
 
+                           $.each(response.errors,function (key,err_values){
+                               $('#saveform_errlist').append('<li>'+err_values+'</li>');
+
+                           });
+
+
+                       }
+                       else{
+                           $('#saveform_errlist').html("");
+
+                           $('#success_message').addClass('alert alert-success')
+                           $('#success_message').text(response.message)
+                           $('#exampleModal').modal('hide');
+                           $('#exampleModal').find('input').val("");
+                       }
+                   }
+               });
+
+
+
+           }) ;
+        });
+    </script>
 
 @endsection

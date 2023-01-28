@@ -16,11 +16,13 @@ class CheckRole
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
+
     {
+        if (Auth::check()){
         if (auth()->user()->role == 1){
         return $next($request);}
         else{
             return redirect(route('home'))->with('warning','شمابه این صفحه دسترسی ندارید');
-        }
+        }}
     }
 }
