@@ -115,7 +115,7 @@
 {{--                                                </div>--}}
 
 {{--                                                @if(!(auth()->user()->id==$user->id) or auth()->user()->role==2)--}}
-{{--                                                    <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
+        {{--                                                    <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
 {{--                                                       data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"--}}
 {{--                                                       href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>--}}
 {{--                                                    --}}{{--                                                <a title="{{__('user.delete')}}" href="{{route('users.destroy',$user->id)}}" data-bs-toggle="modal" data-bs-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>--}}
