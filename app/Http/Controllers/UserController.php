@@ -169,7 +169,10 @@ class UserController extends Controller
     {
         $user=User::find($id);
         $user->delete();
-        return redirect(route('users.index'))->with('warning','کاربر انتخاب شده با موفقیت حذف گردید');
+        return response()->json([
+            'status' => 200,
+            'message' => 'کاربر انتخاب شده با موفقیت حذف گردید',
+        ]);
 
     }
 }

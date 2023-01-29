@@ -68,7 +68,7 @@ class ReservationController extends Controller
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
         $loadrow->tracking_number = $request->tracking_number;
-        $p_row = Reservation::get()->last();
+        $p_row = Reservation::orderBy('row','asc')->get()->last();
         if ($p_row) {
             $loadrow->row = ($p_row->row) + 1;
         } else {

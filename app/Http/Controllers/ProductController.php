@@ -18,7 +18,14 @@ class ProductController extends Controller
         $products=Product::all();
         return view('product.index',compact('products'));
     }
-
+    public function fetchproduct()
+    {
+        $products=Product::all();
+        return response()->json([
+            'products'=>$products
+        ]);
+        return view('product.index',compact('products'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -90,10 +97,21 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        return view('product.edit',compact('product'));
-    }
+        $product=product::find($id);
+        if ($product){
+            return response()->json([
+                'status'=>200,
+                'product'=>$product,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status'=>400,
+                'product'=>'kkjhk',
+            ]);
+        }    }
 
     /**
      * Update the specified resource in storage.
@@ -102,18 +120,36 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $validation=$request->validate([
-            'name'=>'required|numeric',
-            'price'=>'required',
+        $validator = Validator::make($request->all(), [
+            'name'=>'required|unique:products,name,'.$id,
+            'price'=>'required|numeric',
         ]);
-//        $product=Product::find($id);
-        $product->name=$request->name;
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 400,
+                'errors' => $validator->messages(),
+            ]);
+        }
+        else {
+        $product=Product::find($id);
+            if ($product) {
+
+                $product->name=$request->name;
         $product->price=$request->price;
         $product->update();
-        return redirect(route('product.index'))->with('success','فرآورده با موفقیت ویرایش گردید');
+            return response()->json([
+                'status' => 200,
+                'message' => 'فرآورده با موفقیت ویرایش گردید',
+            ]);
+        } else {
+        return response()->json([
+            'status' => 404,
+            'product' => 'kkjhk',
+        ]);
     }
+    }}
 
     /**
      * Remove the specified resource from storage.
@@ -121,9 +157,14 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
+        $product=Product::find($id);
         $product->delete();
-        return redirect(route('product.index'))->with('warning','فرآورده با موفقیت حذف گردید');
-    }
+        return response()->json([
+            'status' => 200,
+            'message' => 'فرآورده انتخاب شده با موفقیت حذف گردید',
+        ]);
+
+       }
 }

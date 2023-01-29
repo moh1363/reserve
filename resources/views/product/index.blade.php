@@ -44,97 +44,7 @@
                                     </tr>
                                 @else
                                     @foreach($products as $product)
-                                        <tr>
 
-                                            <td>{{$i++}}</td>
-                                            <td>{{$product->name}}</td>
-                                            <td>{{$product->price}}</td>
-                                            <td>
-
-                                                <a href=""data-bs-toggle="modal"
-                                                   data-bs-target="#exampleModal1" title="{{__('edit')}}">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i></a>
-
-
-                                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-                                                 aria-labelledby="exampleModalLabel"
-                                                 aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">{{__('product.edit')}}</h5>
-                                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                                    aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{route('product.update',$product->id)}}" method="post">
-                                                                @method('patch')
-                                                                @if ($errors->any())
-                                                                    <div class="alert alert-danger">
-                                                                        <ul>
-                                                                            @foreach ($errors->all() as $error)
-                                                                                <li>{{ $error }}</li>
-                                                                            @endforeach
-                                                                        </ul>
-                                                                    </div>
-                                                                @endif
-                                                                @csrf
-
-                                                                <input hidden size="4" name="row">
-                                                                <label for="name">{{__('product.name')}}</label><br>
-
-                                                                <input required id="name" size="60px" name="name" value="{{$product->name}}">
-                                                                <br>
-                                                                <label for="price">{{__('product.price')}}</label><br>
-
-                                                                <input required id="price" name="price" value="{{$product->price}}">
-                                                                {{--                        <button size="5" type="submit">ایجاد</button>--}}
-
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                                                                    <button type="submit" class="btn btn-primary">{{__('edit')}}</button>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-                                                <a title="{{__('delete')}}" href="" data-bs-toggle="modal" data-bs-target="#deleteModal" data-productid="{{$product['id']}}"><i class="fas fa-trash-alt"></i></a>
-                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel"></h5>
-                                                                <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">فرآورده انتخاب شده حذف گردد؟</div>
-                                                            <div class="modal-footer">
-                                                                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">انصراف</button>
-                                                                <form method="POST" action="{{route('product.destroy',$product->id)}}">
-                                                                    @method('DELETE')
-                                                                    @csrf
-                                                                    {{-- <input type="hidden" id="role_id" name="role_id" value=""> --}}
-                                                                    <a class="btn btn-danger" onclick="$(this).closest('form').submit();">تایید</a>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            {{--                                            <a title="نمایش" href="/users/{{ $user['id'] }}"><i class="fa fa-eye"></i></a>--}}
-
-                                                {{--                                        <a data-id="{{$product->id}}" data-toggle="modal"--}}
-                                                {{--                                           data-target="#editproduct{{$product->id}}" title="ویرایش"--}}
-                                                {{--                                           href="#"><i class="fa fa-edit"></i></a>--}}
-                                            </td>
-                                        </tr>
                                     @endforeach
                                 </tbody>
                                 @endif
@@ -151,6 +61,7 @@
 
 
     <!-- Modal -->
+    <!-- add product Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -160,76 +71,286 @@
                             aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-{{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
-{{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                    {{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
+                    {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
                 </div>
                 <div class="modal-body">
                     <ul id="saveform_errlist"></ul>
 
-                        <label for="name">{{__('product.name')}}</label><br>
-                        <input  class="name" size="50px" name="name">
-                        <br>
+
+                    <label for="name">{{__('product.name')}}</label><br>
+                    <input required  class="name" size="50px" name="name" >
+                    <br>
+
+                    <label for="price">{{__('product.price')}}</label><br>
+                    <input  required class="price" name="price" >
+                    <br>
 
 
-                        <label for="price">{{__('product.price')}}</label><br>
-                        <input  class="price" name="price" >
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                            <button   class="btn btn-primary btn-submit">{{__('create')}}</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                        <button  class="btn btn-primary btn-submit">{{__('create')}}</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+
+    {{--    edit modal--}}
+    <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{__('product.edit')}}</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
+                    {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                </div>
+                <div class="modal-body">
+                    <ul id="updateform_errlist"></ul>
+                    <input type="text" id="edituserid"><br>
+
+                    <label for="product">{{__('product.name')}}</label><br>
+                    <input required id="edit_name" class="name" size="50px" name="name" >
+                    <br>
+
+                    <label for="price">{{__('product.price')}}</label><br>
+                    <input id="edit_price"  required class="product" name="product" >
+                    <br>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                        <button  class="btn btn-primary btn-edit">{{__('edit')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{--    delete modal--}}
+    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{__('product.delete')}}</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
+                    {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteuserid"><br>
+                    <h4>فرآورده مورد نظر حذف گردد؟</h4>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                    <button  class="btn btn-primary btn-delete">{{__('delete')}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
     <script>
         $(document).ready(function(){
-           $(document).on('click','.btn-submit',function (e){
-               e.preventDefault();
-               // console.log("hello");
-               var data={
-                   'name' :$('.name').val(),
-                   'price' :$('.price').val(),
-               }
-               // console.log(data);
-               $.ajaxSetup({
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   }
-               });
-               $.ajax({
-                  type : "POST",
-                  url : "/product",
-                  data : data,
-                   dataType : "json",
-                   success :function (response) {
-                      // console.log(response);
-                       if(response.status == 400)
-                       {
-                           $('#saveform_errlist').html("");
-                           $('#saveform_errlist').addClass('alert alert-danger');
+            // fetchproduct
+            fetchproduct();
+            function fetchproduct(){
+                $.ajax({
+                    type :"GET",
+                    url : "/fetch-product",
+                    dataType : "json",
+                    success : function (response) {
+                        // console.log(response.users)
+                        $('tbody').html("");
+                        $.each(response.products,function (key,item) {
 
-                           $.each(response.errors,function (key,err_values){
-                               $('#saveform_errlist').append('<li>'+err_values+'</li>');
+                            $('tbody').append( ' <tr>\
+                                <td>'+ {{$i++}}+'</td>\
+                                <td>'+item.name+'</td>\
+                                <td>'+item.price+'</td>\
+                                <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\
+                                </tr>'
+                            );
+                        });
+                    }
 
-                           });
+                });
+            }
+// endfetchproduct
+
+            // deleteuser
+            $(document).on('click','.delete-button',function (e) {
+                e.preventDefault();
+                var product_id=$(this).val();
+                // alert(product_id);
+                $('#deleteuserid').val(product_id);
+                $('#deletemodal').modal('show');
+            });
+            $(document).on('click','.btn-delete',function (e) {
+                e.preventDefault();
+                $(this).text('در حال پاک کردن...')
+                var product_id = $('#deleteuserid').val();
+                $.ajaxSetup({
+                    headers: {
+
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "DELETE",
+                    url: "/delete-product/" + product_id,
+                    success: function (response) {
+                        // console.log(response);
+                        $('#success_message').addClass("alert alert-success");
+                        $('#success_message').text(response.message);
+                        $('#deletemodal').modal('hide');
+                        fetchproduct();
+
+                    }
+                });
+            });
+            // enddeleteuser
+
+            // edituser
+
+            $(document).on('click','.edit-button',function (e) {
+                e.preventDefault();
+                var product_id=$(this).val();
+                // console.log(product_id);
+                $('#editmodal').modal('show');
+                $.ajax({
+                    type: "GET",
+                    url: "/edit-product/"+product_id,
+                    dataType: "json",
+                    success: function (response) {
+                        // console.log(response);
+                        if(response.status==404){
+                            $('#success_message').html("");
+                            $('#success_message').addClass("alert alert-danger");
+                            $('#success_message').text(response.message);
+                        }
+                        else{
+                            $('#edit_name').val(response.product.name);
+                            $('#edit_price').val(response.product.price);
+                            $('#edituserid').val(product_id);
+
+                        }
+                    }
+                });
+
+            });
+            $(document).on('click','.btn-edit',function (e) {
+                e.preventDefault();
+                $(this).text('درحال ویرایش ...')
+                var product_id=$('#edituserid').val();
+                var data={
+                    'name' :$('#edit_name').val(),
+                    'price' :$('#edit_price').val(),
+                }
+                // console.log(product_id);
+                $.ajaxSetup({
+                    headers: {
+
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "PUT",
+                    url: "/update-product/"+product_id,
+                    data :data,
+                    dataType: "json",
+                    success: function (response) {
+                        // console.log(response);
+                        if(response.status==400){
+                            $('#updateform_errlist').html("");
+                            $('#updateform_errlist').addClass("alert alert-danger");
+                            $.each(response.errors,function (key,err_values) {
+                                $('#updateform_errlist').append('<li>'+err_values+'</li>');
+
+                            });
+                            $('.btn-edit').text('ویرایش');
+
+                        }
+                        else if(response.status==404){
+                            $('#updateform_errlist').html("");
+                            $('#success_message').addClass("alert alert-success");
+                            $('#success_message').text(response.message);
+                            $('.btn-edit').text('ویرایش');
+
+                        }
+                        else{
+                            $('#updateform_errlist').html("");
+                            $('#success_message').addClass("alert alert-success");
+                            $('#success_message').html("");
+                            $('#success_message').text(response.message);
+                            $('#editmodal').modal('hide');
+                            $('.btn-edit').text('ویرایش');
+
+                            fetchproduct();
+                        }
+                    }
+                });
+
+            });
+            // endedituser
+
+            // adduser
+            $(document).on('click','.btn-submit',function (e){
+                e.preventDefault();
+                // console.log("hello");
+                var data={
+                    'name' :$('.name').val(),
+                    'price' :$('.price').val(),
+                }
+                // console.log(data);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type : "POST",
+                    url : "/product",
+                    data : data,
+                    dataType : "json",
+                    success :function (response) {
+                        // console.log(response);
+                        if(response.status == 400)
+                        {
+                            $('#saveform_errlist').html("");
+                            $('#saveform_errlist').addClass('alert alert-danger');
+
+                            $.each(response.errors,function (key,err_values){
+                                $('#saveform_errlist').append('<li>'+err_values+'</li>');
+
+                            });
 
 
-                       }
-                       else{
-                           $('#saveform_errlist').html("");
+                        }
+                        else{
+                            $('#saveform_errlist').html("");
 
-                           $('#success_message').addClass('alert alert-success')
-                           $('#success_message').text(response.message)
-                           $('#exampleModal').modal('hide');
-                           $('#exampleModal').find('input').val("");
-                       }
-                   }
-               });
+                            $('#success_message').addClass('alert alert-success')
+                            $('#success_message').text(response.message)
+                            $('#exampleModal').modal('hide');
+                            $('#exampleModal').find('input').val("");
+                            fetchproduct();
+
+                        }
+                    }
+                });
 
 
 
-           }) ;
+            }) ;
         });
     </script>
 

@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+{{__('row.list')}}
+@endsection
 
 @section('content')
     <div class="container">

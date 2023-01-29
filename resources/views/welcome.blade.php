@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title')
+{{__('home')}}
+@endsection
 
 @section('content')
     <div class="container">
@@ -117,7 +120,7 @@
                     </div>
                     <div class="form-group">
                         <label for="load_number">{{__('load.number')}}</label>
-                        <input name="load_number" type="text" class="form-control" id="load_number" aria-describedby="emailHelp"  >
+                        <input  name="load_number" type="text" class="form-control" id="load_number" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
                         <label for="product_type">{{__('product.type')}}</label>
@@ -127,7 +130,6 @@
                             @endforeach
                         </select>
                     </div>
-                    <h1 id="stateText">sfsdfdsf</h1>
 
                     <div class="form-group">
                         <label for="membership_number">{{__('membership.number')}}</label>

@@ -6,7 +6,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div id="success_message"></div>
+                <div id="success_message">
+
+                </div>
 
                 <div class="card">
                     <div class="card-header">
@@ -43,107 +45,7 @@
                                     </tr>
                                 @else
                                     @foreach($users as $user)
-{{--                                        <tr>--}}
 
-{{--                                            <td>{{$i++}}</td>--}}
-{{--                                            <td>{{$user->name}}</td>--}}
-{{--                                            <td>{{$user->codemelli}}</td>--}}
-{{--                                            <td>--}}
-{{--                                                @if($user->role==1)--}}
-{{--                                                    {{__('admin')}}--}}
-{{--                                                @elseif($user->role==2)--}}
-{{--                                                    {{__('operator')}}--}}
-{{--                                                @endif</td>--}}
-{{--                                            <td>--}}
-
-{{--                                                <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
-{{--                                                   data-bs-target="#edituser{{$user->id}}" title="{{__('edit')}}"--}}
-{{--                                                   href="{{route('users.update',$user->id)}}"><i class="fa fa-edit"></i></a>--}}
-
-{{--                                                --}}{{--                                                edit modal--}}
-{{--                                                <div class="modal fade" id="edituser{{$user->id}}" tabindex="-1" role="dialog"--}}
-{{--                                                     aria-labelledby="exampleModalLabel"--}}
-{{--                                                     aria-hidden="true">--}}
-{{--                                                    <div class="modal-dialog" role="document">--}}
-{{--                                                        <div class="modal-content">--}}
-{{--                                                            <div class="modal-header">--}}
-{{--                                                                <h5 class="modal-title" id="exampleModalLabel">{{__('user.edit')}}</h5>--}}
-{{--                                                                <button type="button" class="close" data-bs-dismiss="modal"--}}
-{{--                                                                        aria-label="Close">--}}
-{{--                                                                    <span aria-hidden="true">&times;</span>--}}
-{{--                                                                </button>--}}
-{{--                                                            </div>--}}
-{{--                                                            <div class="modal-body">--}}
-{{--                                                                <form action="{{route('users.update',$user->id)}}" method="post">--}}
-{{--                                                                    @method('patch')--}}
-{{--                                                                    @if ($errors->any())--}}
-{{--                                                                        <div class="alert alert-danger">--}}
-{{--                                                                            <ul>--}}
-{{--                                                                                @foreach ($errors->all() as $error)--}}
-{{--                                                                                    <li>{{ $error }}</li>--}}
-{{--                                                                                @endforeach--}}
-{{--                                                                            </ul>--}}
-{{--                                                                        </div>--}}
-{{--                                                                    @endif--}}
-{{--                                                                    @csrf--}}
-
-
-{{--                                                                    <label for="name">{{__('user.name')}}</label><br>--}}
-{{--                                                                    <input required id="name" size="60px" name="name" value="{{$user->name}}">--}}
-{{--                                                                    <br>--}}
-
-{{--                                                                    <label for="codemelli">{{__('user.codemelli')}}</label><br>--}}
-{{--                                                                    <input minlength="10" maxlength="10" required id="price" name="codemelli" value="{{$user->codemelli}}">--}}
-{{--                                                                    <br>--}}
-
-{{--                                                                    <label for="role">{{__('user.role')}}</label><br>--}}
-{{--                                                                    <select name="role">--}}
-{{--                                                                        <option value="1">{{__('user.admin')}}</option>--}}
-{{--                                                                        <option value="2">{{__('user.operator')}}</option>--}}
-{{--                                                                    </select>--}}
-{{--                                                                    --}}{{--                        <button size="5" type="submit">ایجاد</button>--}}
-
-{{--                                                                    <div class="modal-footer">--}}
-{{--                                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>--}}
-{{--                                                                        <button type="submit" class="btn btn-primary btn-edit">ویرایش</button>--}}
-{{--                                                                    </div>--}}
-{{--                                                                </form>--}}
-{{--                                                            </div>--}}
-
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-
-{{--                                                @if(!(auth()->user()->id==$user->id) or auth()->user()->role==2)--}}
-        {{--                                                    <a data-id="{{$user->id}}" data-bs-toggle="modal"--}}
-{{--                                                       data-bs-target="#deleteuser{{$user->id}}" title="{{__('delete')}}"--}}
-{{--                                                       href="{{route('users.destroy',$user->id)}}"><i class="fa fa-trash-alt"></i></a>--}}
-{{--                                                    --}}{{--                                                <a title="{{__('user.delete')}}" href="{{route('users.destroy',$user->id)}}" data-bs-toggle="modal" data-bs-target="#deleteModal" data-userid="{{$user['id']}}"><i class="fas fa-trash-alt"></i></a>--}}
-{{--                                                    <div class="modal fade" id="deleteuser{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
-{{--                                                        <div class="modal-dialog" role="document">--}}
-{{--                                                            <div class="modal-content">--}}
-{{--                                                                <div class="modal-header">--}}
-{{--                                                                    <h5 class="modal-title" id="exampleModalLabel">{{__('user.delete')}}</h5>--}}
-{{--                                                                    <button class="close" type="button" data-bs-dismiss="modal" aria-label="Close">--}}
-{{--                                                                        <span aria-hidden="true">×</span>--}}
-{{--                                                                    </button>--}}
-{{--                                                                </div>--}}
-{{--                                                                <div class="modal-body">کاربر انتخاب شده حذف گردد؟</div>--}}
-{{--                                                                <div class="modal-footer">--}}
-{{--                                                                    <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">انصراف</button>--}}
-{{--                                                                    <form method="POST" action="{{route('users.destroy',$user->id)}}">--}}
-{{--                                                                        @method('DELETE')--}}
-{{--                                                                        @csrf--}}
-{{--                                                                        --}}{{-- <input type="hidden" id="role_id" name="role_id" value=""> --}}
-{{--                                                                        <a class="btn btn-danger" onclick="$(this).closest('form').submit();">تایید</a>--}}
-{{--                                                                    </form>--}}
-{{--                                                                </div>--}}
-{{--                                                            </div>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                @endif--}}
-{{--                                            </td>--}}
-{{--                                        </tr>--}}
                                     @endforeach
                                 </tbody>
                                 @endif
@@ -159,7 +61,7 @@
 
 
 
-    <!-- Modal -->
+    <!-- add user Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -240,8 +142,36 @@
             </div>
         </div>
     </div>
+
+    {{--    delete modal--}}
+    <div class="modal fade" id="deletemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{__('user.delete')}}</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{--                    <h5 class="modal-title" id="exampleModalLabel">ایجاد فرآورده</h5>--}}
+                    {{--                    <button style="float: left" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>--}}
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="deleteuserid"><br>
+                    <h4>کاربر مورد نظر حذف گردد؟</h4>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
+                        <button  class="btn btn-primary btn-delete">{{__('delete')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script>
         $(document).ready(function(){
+            // fetchuser
             fetchuser();
             function fetchuser(){
                 $.ajax({
@@ -262,8 +192,7 @@
                                 <td>'+item.name+'</td>\
                                 <td>'+item.codemelli+'</td>\
                                 <td>'+role+'</td>\
-                                <td><button type="button"   value="'+item.id+'"  class="edit-button"><i class="fa fa-edit"></i></button> </td>\
-                                <td><a href=""  value="'+item.id+'" ><i class="fa fa-trash"></i></a></td>\
+                                <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\
                                 </tr>'
                                     );
                         });
@@ -271,9 +200,44 @@
 
                 });
             }
+// endfetchuser
 
+            // deleteuser
+            $(document).on('click','.delete-button',function (e) {
+                e.preventDefault();
+                var user_id=$(this).val();
+                    // alert(user_id);
+                $('#deleteuserid').val(user_id);
+                $('#deletemodal').modal('show');
+            });
+            $(document).on('click','.btn-delete',function (e) {
+                e.preventDefault();
+                $(this).text('در حال پاک کردن...')
+                var user_id = $('#deleteuserid').val();
+                $.ajaxSetup({
+                    headers: {
 
-            $(document).on('click','.edit-button',function (e) {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    type: "DELETE",
+                    url: "/delete-user/" + user_id,
+                    success: function (response) {
+                        // console.log(response);
+                        $('#success_message').addClass("alert alert-success");
+                        $('#success_message').text(response.message);
+                        $('#deletemodal').modal('hide');
+                        fetchuser();
+
+                    }
+                });
+            });
+            // enddeleteuser
+
+            // edituser
+
+                $(document).on('click','.edit-button',function (e) {
                 e.preventDefault();
                 var user_id=$(this).val();
                 // console.log(user_id);
@@ -354,8 +318,10 @@
                 });
 
             });
+            // endedituser
 
-                $(document).on('click','.btn-submit',function (e){
+            // adduser
+            $(document).on('click','.btn-submit',function (e){
                 e.preventDefault();
                 // console.log("hello");
                 var data={
