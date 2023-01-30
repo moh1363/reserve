@@ -126,7 +126,7 @@
                         <label for="product_type">{{__('product.type')}}</label>
                         <select  id="AddrType" name="product_type" class="form-select">
                             @foreach($products as $product)
-                                <option id="naft1" value="{{$product->name}}">{{$product->name}}{{$product->price}}</option>
+                                <option id="naft1" value="{{$product->name}}">{{$product->name}} ( قیمت:{{$product->price}})</option>
                             @endforeach
                         </select>
                     </div>

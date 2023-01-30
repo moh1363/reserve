@@ -79,11 +79,11 @@
 
 
                         <label for="name">{{__('user.name')}}</label><br>
-                        <input required  class="name" size="50px" name="name" >
+                        <input required  class="name form-control" name="name" >
                         <br>
 
                         <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                        <input minlength="10" maxlength="10" required class="codemelli" name="codemelli" >
+                        <input minlength="10" maxlength="10" required class="codemelli form-control" name="codemelli" >
                         <br>
 
                         <label for="role">{{__('user.role')}}</label><br>
@@ -118,14 +118,14 @@
                 </div>
                 <div class="modal-body">
                     <ul id="updateform_errlist"></ul>
-                    <input type="text" id="edituserid"><br>
+                    <input type="hidden" id="edituserid"><br>
 
                     <label for="name">{{__('user.name')}}</label><br>
-                    <input required id="edit_name" class="name" size="50px" name="name" >
+                    <input required id="edit_name" class="name form-control" size="50px" name="name" >
                     <br>
 
                     <label for="codemelli">{{__('user.codemelli')}}</label><br>
-                    <input id="edit_codemelli" minlength="10" maxlength="10" required class="codemelli" name="codemelli" >
+                    <input id="edit_codemelli" minlength="10" maxlength="10" required class="codemelli form-control" name="codemelli" >
                     <br>
 
                     <label for="role">{{__('user.role')}}</label><br>

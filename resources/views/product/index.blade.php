@@ -79,11 +79,11 @@
 
 
                     <label for="name">{{__('product.name')}}</label><br>
-                    <input required  class="name" size="50px" name="name" >
+                    <input required  class="name form-control" name="name" >
                     <br>
 
                     <label for="price">{{__('product.price')}}</label><br>
-                    <input  required class="price" name="price" >
+                    <input  required class="price  form-control" name="price" >
                     <br>
 
 
@@ -113,14 +113,14 @@
                 </div>
                 <div class="modal-body">
                     <ul id="updateform_errlist"></ul>
-                    <input type="text" id="edituserid"><br>
+                    <input type="hidden" id="edituserid"><br>
 
                     <label for="product">{{__('product.name')}}</label><br>
-                    <input required id="edit_name" class="name" size="50px" name="name" >
+                    <input required id="edit_name" class="name  form-control" name="name" >
                     <br>
 
                     <label for="price">{{__('product.price')}}</label><br>
-                    <input id="edit_price"  required class="product" name="product" >
+                    <input id="edit_price"  required class="product  form-control" name="product" >
                     <br>
 
                     <div class="modal-footer">
