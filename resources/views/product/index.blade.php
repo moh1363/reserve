@@ -173,7 +173,7 @@
                         $.each(response.products,function (key,item) {
 
                             $('tbody').append( ' <tr>\
-                                <td>'+ {{$i++}}+'</td>\
+                                <td>'+{{$i++}}+'</td>\
                                 <td>'+item.name+'</td>\
                                 <td>'+item.price+'</td>\
                                 <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\

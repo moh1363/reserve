@@ -14,7 +14,7 @@
                         @php
                             $i=1;
                         @endphp
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-responsive">
                             <thead>
                             <tr>
                                 <th scope="col">ردیف</th>
