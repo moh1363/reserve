@@ -181,6 +181,7 @@
                     success : function (response) {
                         // console.log(response.users)
                         $('tbody').html("");
+                        var i =1;
                         $.each(response.users,function (key,item) {
                             if(item.role==1){
                                 var role='مدیر';
@@ -188,7 +189,7 @@
                                 var role='اپراتور';
                             }
                             $('tbody').append( ' <tr>\
-                                <td>'+ {{$i++}}+'</td>\
+                                <td>'+  i++ +'</td>\
                                 <td>'+item.name+'</td>\
                                 <td>'+item.codemelli+'</td>\
                                 <td>'+role+'</td>\
