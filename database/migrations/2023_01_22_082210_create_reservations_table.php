@@ -24,10 +24,15 @@ return new class extends Migration
             $table->string('tracking_number');
             $table->string('row')->default(1)->unique();
             $table->string('status')->default(1);
-
+            $table->bigInteger('created_by')->unsigned();
+            $table->bigInteger('updated_by')->unsigned()->nullable();
+            $table->foreign('created_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
+
+
     }
 
     /**

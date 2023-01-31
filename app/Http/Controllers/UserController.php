@@ -49,7 +49,7 @@ class UserController extends Controller
         $validator=Validator::make($request->all(),[
             'name'=>'required|unique:products',
             'role'=>'required|numeric',
-            'codemelli'=>'required|numeric|unique:users|digits-between:10,10',
+            'codemelli'=>'required|numeric|unique:users|digits:10',
         ]);
         if ($validator->fails())
         {
@@ -123,7 +123,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:products',
             'role' => 'required|numeric',
-            'codemelli' => 'required|numeric||digits-between:10,10|unique:users,codemelli,'.$id
+            'codemelli' => 'required|numeric|digits:10|unique:users,codemelli,'.$id
         ]);
         if ($validator->fails()) {
             return response()->json([

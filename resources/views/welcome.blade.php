@@ -88,31 +88,9 @@
 
                         <input name="threenumber" id="TextArea1" placeholder="سه رقم آخر پلاک" required maxlength="3" minlength="3">
 
-                        <select name="alefba" size="1" id="Select2" >
-                            <option>ب</option>
-                            <option>ج</option>
-                            <option>د</option>
-                            <option>ژ</option>
-                            <option>س</option>
-                            <option>ص</option>
-                            <option>ط</option>
-                            <option>ق</option>
-                            <option>ل</option>
-                            <option>م</option>
-                            <option>ن</option>
-                            <option>و</option>
-                            <option>ه</option>
-                            <option>ی</option>
-                            <option>الف</option>
-                            <option>ت</option>
-                            <option>ش</option>
-                            <option>ک</option>
-                            <option>گ</option>
-                            <option>ع</option>
-                            <option>پ</option>
-                            <option>ث</option>
-                            <option>ز</option>
-                            <option>ف</option>
+                        <select name="alefba" size="1" id="Select2">
+                            <option selected>ع</option>
+
                         </select>
                         <input name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2">
 
@@ -120,7 +98,7 @@
                     </div>
                     <div class="form-group">
                         <label for="load_number">{{__('load.number')}}</label>
-                        <input  name="load_number" type="text" class="form-control" id="load_number" aria-describedby="emailHelp"  >
+                        <input minlength="8" maxlength="8" name="load_number" type="text" class="form-control" id="load_number" aria-describedby="emailHelp"  >
                     </div>
                     <div class="form-group">
                         <label for="product_type">{{__('product.type')}}</label>

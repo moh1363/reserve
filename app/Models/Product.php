@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use HasFactory;
+    public function user(){
+        return $this->hasOne(User::class,'id','created_by');
+
+    }
+    public function updateuser(){
+        return $this->hasOne(User::class,'id','updated_by');
+
+    }
+
 }

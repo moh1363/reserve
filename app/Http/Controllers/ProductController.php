@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -15,11 +16,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
+        $products=Product::with('user')->get();
         return view('product.index',compact('products'));
     }
     public function fetchproduct()
     {
+
         $products=Product::all();
         return response()->json([
             'products'=>$products
@@ -60,6 +62,7 @@ class ProductController extends Controller
              $product=new Product();
              $product->name=$request->input('name');
              $product->price=$request->input('price');
+             $product->created_by=Auth::user()->id;
              $product->save();
                 return response()->json([
                     'status'=>200,
@@ -138,7 +141,9 @@ class ProductController extends Controller
 
                 $product->name=$request->name;
         $product->price=$request->price;
-        $product->update();
+                $product->updated_by=Auth::user()->id;
+
+                $product->update();
             return response()->json([
                 'status' => 200,
                 'message' => 'فرآورده با موفقیت ویرایش گردید',

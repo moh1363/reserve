@@ -8,6 +8,7 @@ use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Hekmatinasser\Verta\Verta;
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use function Sodium\compare;
 
 class ReservationController extends Controller
@@ -44,7 +45,7 @@ class ReservationController extends Controller
         $products=Product::all();
 
         $validated = $request->validate([
-            'load_number' => 'required|unique:reservations|numeric',
+            'load_number' => 'required|unique:reservations|numeric|digits:8',
             'row' => 'unique:reservations|numeric',
 //            'car_number' => 'required',
             'product_type' => 'required',
@@ -67,8 +68,9 @@ class ReservationController extends Controller
         $loadrow->load_number = $request->load_number;
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
+        $loadrow->created_by = Auth::user()->id;
         $loadrow->tracking_number = $request->tracking_number;
-        $p_row = Reservation::orderBy('row','asc')->get()->last();
+        $p_row = Reservation::get()->last();
         if ($p_row) {
             $loadrow->row = ($p_row->row) + 1;
         } else {
@@ -145,6 +147,7 @@ class ReservationController extends Controller
         $loadrow->load_number = $request->load_number;
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
+        $loadrow->updated_by = Auth::user()->id;
         $loadrow->tracking_number = $request->tracking_number;
         $p_row = Reservation::get()->last();
         if ($p_row) {

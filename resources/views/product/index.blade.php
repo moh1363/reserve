@@ -30,6 +30,8 @@
                                     <th>{{__('row1')}}</th>
                                     <th>{{__('product.name')}}</th>
                                     <th>{{__('product.price')}}</th>
+                                    <th>{{__('created_by')}}</th>
+                                    <th>{{__('updated_by')}}</th>
                                     <th>{{__('action')}}</th>
                                 </tr>
                                 </thead>
@@ -85,6 +87,7 @@
                     <label for="price">{{__('product.price')}}</label><br>
                     <input  required class="price  form-control" name="price" >
                     <br>
+
 
 
                     <div class="modal-footer">
@@ -177,6 +180,8 @@
                                 <td>'+ i++ +'</td>\
                                 <td>'+item.name+'</td>\
                                 <td>'+item.price+'</td>\
+                                <td>'+item.user.name+'</td>\
+                                // <td>'+item.user.name+'</td>\
                                 <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\
                                 </tr>'
                             );
