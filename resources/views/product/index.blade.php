@@ -152,7 +152,7 @@
                     <input type="hidden" id="deleteuserid"><br>
                     <h4>فرآورده مورد نظر حذف گردد؟</h4>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
-                    <button  class="btn btn-primary btn-delete">{{__('delete')}}</button>
+                    <button  class="btn btn-danger btn-delete">{{__('delete')}}</button>
                 </div>
             </div>
         </div>
@@ -181,7 +181,7 @@
                                 <td>'+item.name+'</td>\
                                 <td>'+item.price+'</td>\
                                 <td>'+item.user.name+'</td>\
-                                // <td>'+item.user.name+'</td>\
+                                <td>'+item.user.name+'</td>\
                                 <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\
                                 </tr>'
                             );
@@ -202,7 +202,7 @@
             });
             $(document).on('click','.btn-delete',function (e) {
                 e.preventDefault();
-                $(this).text('در حال پاک کردن...')
+                // $(this).text('در حال پاک کردن...')
                 var product_id = $('#deleteuserid').val();
                 $.ajaxSetup({
                     headers: {
@@ -215,8 +215,9 @@
                     url: "/delete-product/" + product_id,
                     success: function (response) {
                         // console.log(response);
-                        $('#success_message').addClass("alert alert-success");
+                        $('#success_message').addClass("alert alert-danger");
                         $('#success_message').text(response.message);
+                        $('#success_message').hide(10000);
                         $('#deletemodal').modal('hide');
                         fetchproduct();
 
@@ -255,7 +256,7 @@
             });
             $(document).on('click','.btn-edit',function (e) {
                 e.preventDefault();
-                $(this).text('درحال ویرایش ...')
+                // $(this).text('درحال ویرایش ...')
                 var product_id=$('#edituserid').val();
                 var data={
                     'name' :$('#edit_name').val(),
@@ -278,6 +279,7 @@
                         if(response.status==400){
                             $('#updateform_errlist').html("");
                             $('#updateform_errlist').addClass("alert alert-danger");
+                            $('#updateform_errlist').addClass("alert alert-danger");
                             $.each(response.errors,function (key,err_values) {
                                 $('#updateform_errlist').append('<li>'+err_values+'</li>');
 
@@ -289,6 +291,8 @@
                             $('#updateform_errlist').html("");
                             $('#success_message').addClass("alert alert-success");
                             $('#success_message').text(response.message);
+                            $('#success_message').hide(10000);
+
                             $('.btn-edit').text('ویرایش');
 
                         }
@@ -344,8 +348,9 @@
                         else{
                             $('#saveform_errlist').html("");
 
-                            $('#success_message').addClass('alert alert-success')
-                            $('#success_message').text(response.message)
+                            $('#success_message').addClass('alert alert-success');
+                            $('#success_message').text(response.message);
+                            $('#success_message').hide(10000);
                             $('#exampleModal').modal('hide');
                             $('#exampleModal').find('input').val("");
                             fetchproduct();

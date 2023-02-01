@@ -38,7 +38,7 @@
     "product.managment": "مدیریت فرآورده ها",
     "product.name": "نام فرآورده",
     "product.type": "نوع فرآورده",
-    "product.price": "قیمت فرآورده",
+    "product.price": "هزینه نوبت دهی",
     "product.edit": "ویرایش فرآورده",
     "product.create": "ایجاد فرآورده",
     "product.delete": "حذف فرآورده",
@@ -62,7 +62,8 @@
     "New.Password": "رمز عبور جدید",
     "Confirm.New.Password": "رمز عبور جدید",
     "Chnage.Password": "تغییر رمز عبور",
-    "change": "تغییر "
+    "change": "تغییر ",
+    "inspect": "نوبت دهی "
 
 
 

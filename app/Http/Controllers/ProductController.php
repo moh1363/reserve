@@ -17,12 +17,13 @@ class ProductController extends Controller
     public function index()
     {
         $products=Product::with('user')->get();
+//        dd($products);
         return view('product.index',compact('products'));
     }
     public function fetchproduct()
     {
 
-        $products=Product::all();
+        $products=Product::with('user')->get();
         return response()->json([
             'products'=>$products
         ]);
@@ -66,7 +67,7 @@ class ProductController extends Controller
              $product->save();
                 return response()->json([
                     'status'=>200,
-                    'message'=>'ok',
+                    'message'=>'فرآورده با موفقیت ثبت گردید',
                 ]);
 
             }

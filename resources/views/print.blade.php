@@ -38,4 +38,10 @@
 
 <script type="text/javascript">
     window.onload = function() { window.print(); }
+
+</script>
+<script>
+    setTimeout(function() {
+        window.close()
+    }, 5);
 </script>

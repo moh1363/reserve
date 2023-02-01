@@ -54,14 +54,18 @@ class ReservationController extends Controller
             'driver_name' => 'required',
             'membership_number' => 'required',
         ]);
+
         $loadrow = new Reservation();
+        if ($request->car_number){
+            $loadrow->car_number =$request->car_number;
+        }else{
         $a=$request->twonumber;
         $b=$request->alefba;
         $c=$request->threenumber;
         $d=$request->country;
         $e=$request->city;
         $arr=[$a,$b,$c,$d,$e];
-        $loadrow->car_number = implode('',$arr);
+        $loadrow->car_number = implode('',$arr);}
         $loadrow->load_number = $request->load_number;
         $loadrow->driver_name = $request->driver_name;
         $loadrow->membership_number = $request->membership_number;
@@ -76,7 +80,7 @@ class ReservationController extends Controller
         } else {
             $row = 1;
         }
-        $carnumber = Reservation::where('car_number', implode('',$arr))->update([
+        $carnumber = Reservation::where('car_number', $request->car_number)->update([
             'status' => 0
         ]);
         $loadrow->save();
@@ -170,5 +174,23 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         //
+    }
+
+    public function reservesearch(Request $request)
+    {
+        $reserves=Reservation::orderBy('issue_date','asc')->paginate(10);
+    $products=Product::all();
+        $a=$request->twonumber;
+        $b=$request->alefba;
+        $c=$request->threenumber;
+        $d=$request->country;
+        $e=$request->city;
+        $arr=[$a,$b,$c,$d,$e];
+        $q2 = implode('',$arr);
+            $items = Reservation::where('car_number','LIKE','%'.$q2.'%')->get()->last();
+//            dd($items->driver_name);
+//        dd($q2);
+
+        return view('search',compact('items','products','reserves','q2'));
     }
 }

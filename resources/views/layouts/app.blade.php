@@ -27,7 +27,7 @@
     <nav class="main-menu" dir="rtl">
         <div class="container">
             <ul>
-                <li class="current-item"><a href="{{ url('/') }}">صفحه اصلی</a></li>
+                <li class="current-item"><a href="{{ url('/') }}">{{__('inspect')}}</a></li>
                 @if(Auth::check())
                     @if(auth()->user()->role==1)
                         <li class="current-item"><a href="{{ url('/users') }}">{{__('users')}}</a></li>
