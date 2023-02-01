@@ -141,7 +141,8 @@ class ProductController extends Controller
             if ($product) {
 
                 $product->name=$request->name;
-        $product->price=$request->price;
+                 $product->price=$request->price;
+
                 $product->updated_by=Auth::user()->id;
 
                 $product->update();

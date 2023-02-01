@@ -47,8 +47,8 @@
 
     "car.number": "شماره نفتکش",
     "load.number": "شماره بارنامه",
-    "issue.date": "تاریخ صدور",
-    "membership.number": "شماره عضویت",
+    "issue.date": "تاریخ صدور قبض",
+    "membership.number": "شماره عضویت در انجمن",
     "driver.name": "نام راننده",
     "tracking.number": "شماره پیگیری تراکنش",
     "reg": "ثبت",

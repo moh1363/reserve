@@ -64,7 +64,8 @@ class ReservationController extends Controller
         $c=$request->threenumber;
         $d=$request->country;
         $e=$request->city;
-        $arr=[$a,$b,$c,$d,$e];
+//        $arr=[$a,$b,$c,$d,$e];
+        $arr=[$e,$d,'-',$c,$b,$a];
         $loadrow->car_number = implode('',$arr);}
         $loadrow->load_number = $request->load_number;
         $loadrow->driver_name = $request->driver_name;
@@ -143,7 +144,7 @@ class ReservationController extends Controller
         $c=$request->threenumber;
         $d=$request->country;
         $e=$request->city;
-        $arr=[$a,$b,$c,$d,$e];
+        $arr=[$e,$d,'-',$c,$b,$a];
         $loadrow->car_number = implode('',$arr);
         $loadrow->load_number = $request->load_number;
         $loadrow->driver_name = $request->driver_name;
@@ -185,7 +186,7 @@ class ReservationController extends Controller
         $c=$request->threenumber;
         $d=$request->country;
         $e=$request->city;
-        $arr=[$a,$b,$c,$d,$e];
+        $arr=[$e,$d,'-',$c,$b,$a];
         $q2 = implode('',$arr);
             $items = Reservation::where('car_number','LIKE','%'.$q2.'%')->get()->last();
 //            dd($items->driver_name);

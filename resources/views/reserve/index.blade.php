@@ -17,14 +17,14 @@
                         <table class="table table-bordered table-responsive">
                             <thead>
                             <tr>
-                                <th scope="col">{{__('row')}}</th>
+                                <th scope="col">{{__('row1')}}</th>
                                 <th scope="col">{{__('car.number')}}</th>
                                 <th scope="col">{{__('driver.name')}}</th>
                                 <th scope="col">{{__('membership.number')}}</th>
                                 <th scope="col">{{__('load.number')}}</th>
                                 <th scope="col">{{__('product.type')}}</th>
                                 <th scope="col">{{__('issue.date')}}</th>
-                                <th scope="col">{{__('row1')}}</th>
+                                <th scope="col">{{__('row')}}</th>
                                 <th scope="col">{{__('created_by')}}</th>
                                 <th scope="col">{{__('status')}}</th>
                                 <th scope="col">{{__('action')}}</th>
