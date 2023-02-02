@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->string('car_number');
-            $table->string('load_number');
+            $table->string('load_number')->unique();
             $table->string('product_type');
-            $table->string('issue_date');
+            $table->date('issue_date');
             $table->string('driver_name');
             $table->string('membership_number');
             $table->string('tracking_number');

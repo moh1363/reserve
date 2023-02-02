@@ -11,7 +11,7 @@
                     <div class="card-header">نوبت دهی</div>
 
                     <div class="card-body">
-                        <form method="post" action="{{route('row.store')}}">
+                        <form method="post" id="form" action="{{route('row.store')}}">
                             @csrf
                             @if ($errors->any())
                                 <div class="alert alert-danger">
@@ -63,15 +63,15 @@
                                     <label for="driver_name">{{__('driver.name')}}</label>
                                     <input name="driver_name" type="text" class="form-control" id="driver_name"
                                            aria-describedby="emailHelp"
-                                           @if($items)value="{{$items->driver_name}}@endif" value="{{old('driver_name')}}">
+                                           @if($items)value="{{$items->driver_name}}@endif" value="{{old('driver_name')}}" onkeydown='handleEnter(event)'>
                                 </div>
                             <div class="form-group">
                                 <label for="load_number">{{__('load.number')}}</label>
-                                <input name="load_number" minlength="8" maxlength="8" class="form-control" aria-describedby="emailHelp" value="{{old('load_number')}}">
+                                <input onkeydown='handleEnter(event)' name="load_number" minlength="8" maxlength="8" class="form-control" aria-describedby="emailHelp" value="{{old('load_number')}}">
                             </div>
                                 <div class="form-group">
                                     <label for="tracking_number">{{__('tracking.number')}}</label>
-                                    <input name="tracking_number" type="text" class="form-control" id="tracking_number"
+                                    <input onkeydown='handleEnter(event)' name="tracking_number" type="text" class="form-control" id="tracking_number"
                                            aria-describedby="emailHelp" value="{{old('tracking_number')}}" >
                                 </div>
                                 <br>
@@ -103,5 +103,16 @@
                 $("#gas").show();
             });
         });
+    </script>
+    <script>
+        function handleEnter(event) {
+            if (event.key==="Enter") {
+                event.preventDefault();
+                const form = document.getElementById('form')
+                const index = [...form].indexOf(event.target);
+                form.elements[index + 1].focus();
+                //event.preventDefault();
+            }
+        }
     </script>
 @endsection

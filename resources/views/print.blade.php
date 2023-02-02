@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
     window.onload = function() { window.print();
-        // window.location.assign("/")
+        window.location.assign("/")
     }
 
 </script>
