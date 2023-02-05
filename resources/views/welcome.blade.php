@@ -15,20 +15,15 @@
                             <form   action="{{ route('reserve.search') }}" method="GET">
                                 @csrf
                                 <label for="car_number">شماره نفتکش :</label><br>
-                                <select name="city" size="1" id="Select1">
-                                    @for ($x = 10; $x <= 99; $x++)
-                                        <option>{{$x}}</option>
-                                    @endfor
-                                </select>
-                                <input name="country" id="TextArea1"  value="ایران" readonly  >
+                                <input name="city" size="2" id="Select1" placeholder="شهر" maxlength="2">
 
-                                <input name="threenumber" id="TextArea1" placeholder="سه رقم آخر پلاک" required maxlength="3" minlength="3">
+                                <input name="country"  style="text-align: center" size="10" id="TextArea1"  value="ایران" readonly >
 
-                                <select name="alefba" size="1" id="Select2">
-                                    <option selected>ع</option>
+                                <input size="15" name="threenumber" id="TextArea1" placeholder="سه رقم آخر پلاک" required maxlength="3" minlength="3">
 
-                                </select>
-                                <input name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2"><br>
+                                <input name="alefba" style="text-align: center" size="1" id="Select2" value="ع" readonly >
+
+                                <input size="12" name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2"><br>
 
                                 {{--                        <input name="car_number" type="text" class="form-control" id="car_number" aria-describedby="emailHelp"  >--}}
                                <br>
