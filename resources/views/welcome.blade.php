@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-{{__('home')}}
+    {{__('home')}}
 @endsection
 
 @section('content')
@@ -11,54 +11,66 @@
                     <div class="card-header">نوبت دهی</div>
 
                     <div class="card-body">
-                        <div class="form-group">
-                            <form   action="{{ route('reserve.search') }}" method="GET">
-                                @csrf
-                                <label for="car_number">شماره نفتکش :</label><br>
-                                <input name="city" size="2" id="Select1" placeholder="شهر" maxlength="2">
+                        <form action="{{ route('reserve.search') }}" method="GET">
+                            @csrf
+                            <div class="container">
+                                <label for="car_number">شماره نفتکش :</label><br><br>
+                                <div class="license-plate">
 
-                                <input name="country"  style="text-align: center" size="10" id="TextArea1"  value="ایران" readonly >
+                                    <div class="blue-column">
+                                        <div class="flag">
+                                            <div></div>
+                                            <div></div>
+                                            <div></div>
+                                        </div>
+                                        <div class="text">
+                                            <div>I.R.</div>
+                                            <div>IRAN</div>
+                                        </div>
+                                    </div>
 
-                                <input size="15" name="threenumber" id="TextArea1" placeholder="سه رقم آخر پلاک" required maxlength="3" minlength="3">
 
-                                <input name="alefba" style="text-align: center" size="1" id="Select2" value="ع" readonly >
+                                    <span>
+      <input size="3" class="plate" placeholder=" _ _" name="twonumber" maxlength="2" minlength="2" required>
+    </span>
+                                    <span class="alphabet-column">
+      <input size="1" class="plate" value="ع" style="margin-left: 3px" name="alefba">
+    </span>
+                                    <span>
+      <input size="2" class="plate" placeholder="_ _ _" style="margin-left: 20px" name="threenumber" maxlength="3" minlength="3" required>
+    </span>
+                                    <input name="country" style="text-align: center" size="10" id="TextArea1"
+                                           value="ایران" hidden>
 
-                                <input size="12" name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2"><br>
+                                    <div class="iran-column">
+                                        <span>ایــران</span>
+                                        <strong><input name="city" size="2" class="plate" style=" margin-top: 5px"
+                                                       placeholder=" _ _" maxlength="2" minlength="2" required></strong>
+                                    </div>
 
-                                {{--                        <input name="car_number" type="text" class="form-control" id="car_number" aria-describedby="emailHelp"  >--}}
-                               <br>
-                                <div class="form-group">
-
-                                <label for="product.type">{{__('product.type')}} :</label><br>
-                                <select name="product" class="form-select-sm" aria-describedby="emailHelp">
-                                   @foreach($products as $product)
-                                   <option value="{{$product->name}}">{{$product->name}}
-
-                                   </option>
-                                   @endforeach
-                               </select>
                                 </div>
                                 <br>
+                                <br>
+
                                 <div class="form-group">
 
-                                <button type="submit" class="btn btn-info">{{__('inspect')}}</button>
-                                    <div class="form-group">
+                                    <label for="product.type">{{__('product.type')}} :</label><br><br>
+                                    <select name="product" class="form-select-sm" aria-describedby="emailHelp">
+                                        @foreach($products as $product)
+                                            <option value="{{$product->name}}">{{$product->name}}
 
-                            </form>
-                        </div>
-                        <form method="post" action="{{route('row.store')}}">
-                            @csrf
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
+                                            </option>
                                         @endforeach
-                                    </ul>
+                                    </select>
                                 </div>
-    @endif
+                                <br>
+                                <div class="form-group"><br>
 
-
-
+                                    <button type="submit" class="btn btn-info">{{__('inspect')}}</button>
+                                    <div class="form-group">
+                                    </div></div>
+                            </div>
+                        </form>
+                                    </div>
 
 @endsection
