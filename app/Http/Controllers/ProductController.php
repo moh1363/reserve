@@ -63,6 +63,7 @@ class ProductController extends Controller
              $product=new Product();
              $product->name=$request->input('name');
              $product->price=$request->input('price');
+             $product->expire_date=$request->input('expire_date');
              $product->created_by=Auth::user()->id;
              $product->save();
                 return response()->json([
@@ -142,6 +143,8 @@ class ProductController extends Controller
 
                 $product->name=$request->name;
                  $product->price=$request->price;
+                $product->expire_date=$request->expire_date;
+
 
                 $product->updated_by=Auth::user()->id;
 

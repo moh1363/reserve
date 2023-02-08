@@ -30,6 +30,7 @@
                                     <th>{{__('row1')}}</th>
                                     <th>{{__('product.name')}}</th>
                                     <th>{{__('product.price')}}</th>
+                                    <th>{{__('product.expire')}}</th>
                                     <th>{{__('created_by')}}</th>
                                     <th>{{__('updated_by')}}</th>
                                     <th>{{__('action')}}</th>
@@ -87,6 +88,14 @@
                     <label for="price">{{__('product.price')}}</label><br>
                     <input  required class="price  form-control" name="price" >
                     <br>
+                    <label for="expir_date">{{__('product.expire')}}</label><br>
+                    <select name="expire_date"  class="expire_date">
+                        @for ($x = 1; $x <= 31; $x++)
+                            <option >{{$x}}</option>
+                        @endfor
+                    </select>
+
+                    <br>
 
 
 
@@ -125,7 +134,14 @@
                     <label for="price">{{__('product.price')}}</label><br>
                     <input id="edit_price"  required class="product  form-control" name="product" >
                     <br>
+                    <label for="price">{{__('product.expire')}}</label><br>
+                    <select name="expire_date" id="edit_expire_date" class="edit_expire_date">
+                        @for ($x = 1; $x <= 31; $x++)
+                            <option>{{$x}}</option>
+                        @endfor
+                    </select>
 
+                    <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">بستن</button>
                         <button  class="btn btn-primary btn-edit">{{__('edit')}}</button>
@@ -180,6 +196,7 @@
                                 <td>'+ i++ +'</td>\
                                 <td>'+item.name+'</td>\
                                 <td>'+item.price+'</td>\
+                                <td>'+item.expire_date+'</td>\
                                 <td>'+item.user.name+'</td>\
                                 <td>'+item.user.name+'</td>\
                                 <td><button type="button"   value="'+item.id+'"  class="edit-button btn btn-primary">{{__('edit')}}</button> <button  type="button" class="delete-button btn btn-danger"  value="'+item.id+'" >{{__('delete')}}</button></td>\
@@ -247,6 +264,7 @@
                         else{
                             $('#edit_name').val(response.product.name);
                             $('#edit_price').val(response.product.price);
+                            $('#edit_expire_date').val(response.product.expire_date);
                             $('#edituserid').val(product_id);
 
                         }
@@ -261,7 +279,9 @@
                 var data={
                     'name' :$('#edit_name').val(),
                     'price' :$('#edit_price').val(),
+                    'expire_date' :$('#edit_expire_date').val(),
                 }
+
                 // console.log(product_id);
                 $.ajaxSetup({
                     headers: {
@@ -291,7 +311,7 @@
                             $('#updateform_errlist').html("");
                             $('#success_message').addClass("alert alert-success");
                             $('#success_message').text(response.message);
-                            $('#success_message').hide(10000);
+                            // $('#success_message').hide(10000);
 
                             $('.btn-edit').text('ویرایش');
 
@@ -319,6 +339,7 @@
                 var data={
                     'name' :$('.name').val(),
                     'price' :$('.price').val(),
+                    'expire_date' :$('.expire_date').val(),
                 }
                 // console.log(data);
                 $.ajaxSetup({

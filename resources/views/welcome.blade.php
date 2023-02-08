@@ -28,10 +28,27 @@
                                     <option selected>ع</option>
 
                                 </select>
-                                <input name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2">
+                                <input name="twonumber" id="TextArea1" placeholder="دو رقم اول پلاک" required maxlength="2"  minlength="2"><br>
 
                                 {{--                        <input name="car_number" type="text" class="form-control" id="car_number" aria-describedby="emailHelp"  >--}}
+                               <br>
+                                <div class="form-group">
+
+                                <label for="product.type">{{__('product.type')}} :</label><br>
+                                <select name="product" class="form-select-sm" aria-describedby="emailHelp">
+                                   @foreach($products as $product)
+                                   <option value="{{$product->name}}">{{$product->name}}
+
+                                   </option>
+                                   @endforeach
+                               </select>
+                                </div>
+                                <br>
+                                <div class="form-group">
+
                                 <button type="submit" class="btn btn-info">{{__('inspect')}}</button>
+                                    <div class="form-group">
+
                             </form>
                         </div>
                         <form method="post" action="{{route('row.store')}}">

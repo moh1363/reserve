@@ -18,11 +18,18 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $reserves=Reservation::orderBy('issue_date','asc')->paginate(10);
-        return view('reserve.index',compact('reserves'));
-    }
+
+
+
+
+
+    return view('reserve.index',compact('reserves'));}
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -45,12 +52,12 @@ class ReservationController extends Controller
         $products=Product::all();
 
         $validated = $request->validate([
-            'load_number' => 'required|unique:reservations|numeric|digits:8',
+            'load_number' => 'required|unique:reservations|digits:8',
             'row' => 'unique:reservations|numeric',
 //            'car_number' => 'required',
             'product_type' => 'required',
             'issue_date' => 'required',
-            'tracking_number' => 'required|numeric',
+            'tracking_number' => 'required',
             'driver_name' => 'required',
             'membership_number' => 'required',
         ]);
@@ -71,6 +78,8 @@ class ReservationController extends Controller
         $loadrow->driver_name = $request->driver_name;
         $loadrow->membership_number = $request->membership_number;
         $loadrow->load_number = $request->load_number;
+        $loadrow->expire_date = $request->expire_date;
+        $loadrow->product_price = $request->product_price;
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
         $loadrow->created_by = Auth::user()->id;
@@ -150,6 +159,8 @@ class ReservationController extends Controller
         $loadrow->driver_name = $request->driver_name;
         $loadrow->membership_number = $request->membership_number;
         $loadrow->load_number = $request->load_number;
+        $loadrow->expire_date = $request->expire_date;
+        $loadrow->product_price = $request->product_price;
         $loadrow->product_type = $request->product_type;
         $loadrow->issue_date = verta()->format('Y/m/d');
         $loadrow->updated_by = Auth::user()->id;
@@ -189,9 +200,12 @@ class ReservationController extends Controller
         $arr=[$e,$d,'-',$c,$b,$a];
         $q2 = implode('',$arr);
             $items = Reservation::where('car_number','LIKE','%'.$q2.'%')->get()->last();
+            $q3=$request->product;
+            $items1 = Product::where('name','LIKE','%'.$q3.'%')->get()->last();
+
 //            dd($items->driver_name);
 //        dd($q2);
 
-        return view('search',compact('items','products','reserves','q2'));
+        return view('search',compact('items','products','reserves','q2','items1'));
     }
 }
