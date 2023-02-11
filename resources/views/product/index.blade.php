@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div id="success_message"></div>
                 <div class="card">
                     <div class="card-header">
@@ -25,14 +25,14 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-responsive table-bordered">
-                                <thead>
+                                <thead style="text-align: center">
                                 <tr>
-                                    <th>{{__('row1')}}</th>
+                                    <th width="3%">{{__('row1')}}</th>
                                     <th>{{__('product.name')}}</th>
                                     <th>{{__('product.price')}}</th>
                                     <th>{{__('product.expire')}}</th>
-                                    <th>{{__('created_by')}}</th>
-                                    <th>{{__('updated_by')}}</th>
+                                    <th width="20%">{{__('created_by')}}</th>
+                                    <th width="20%">{{__('updated_by')}}</th>
                                     <th>{{__('action')}}</th>
                                 </tr>
                                 </thead>

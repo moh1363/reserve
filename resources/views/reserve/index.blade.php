@@ -6,11 +6,11 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header">{{ 'لیست' }}</div>
 
-                    <div class="card-body">
+                    <div class="card-body table-responsive">
                         @php
                             $i=1;
                         @endphp

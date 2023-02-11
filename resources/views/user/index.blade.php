@@ -5,7 +5,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-10">
                 <div id="success_message">
 
                 </div>
@@ -24,13 +24,13 @@
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-responsive table-bordered">
-                                <thead>
+                                <thead style="text-align: center">
                                 <tr>
-                                    <th>{{__('row1')}}</th>
-                                    <th>{{__('user.name')}}</th>
-                                    <th>{{__('user.codemelli')}}</th>
+                                    <th width="2%">{{__('row1')}}</th>
+                                    <th width="30%">{{__('user.name')}}</th>
+                                    <th width="30%">{{__('user.codemelli')}}</th>
                                     <th>{{__('access')}}</th>
-                                    <th>{{__('action')}}</th>
+                                    <th width="20%">{{__('action')}}</th>
                                 </tr>
                                 </thead>
 
