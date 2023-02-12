@@ -1,22 +1,44 @@
-<div style="font-family:'Yekan';font-size: 20px" dir="rtl" xmlns="http://www.w3.org/1999/html">
-    <h6 style="margin-right: 20px;font-size:22px">سامانه نوبت دهی </h6>
-<h6 style="margin-top:-40px;font-size:22px">        انبار نفت شهید آنجفی</h6>
-    <h6 style=" margin-top:-45px;margin-right: 20px;font-size: 40px;font-weight: bold">{{$loadrow->product_type}}</h6>
-    <div style="margin-top:-90px;font-size: 20px">
+<html>
+<head>
+<link rel="stylesheet" href="{{asset('/fonts/Yekan.ttf')}}">
+    <style>
+    @font-face {
+    font-family: Yekan;
+    src: url({{asset('/fonts/yekan/Yekan.woff')}}) format('woff');
+    }
+
+    </style>
+
+</head>
+
+<body style="font-family:'Yekan';font-size: 16px" dir="rtl" >
+    <h6 style="margin-right: 16px;font-size:18px">سامانه نوبت دهی </h6>
+<h6 style="margin-top:-40px;font-size:18px">        انبار نفت شهید آنجفی</h6>
+    <h6 style=" margin-top:-60px;margin-right: 16px;font-size: 40px;font-weight: bold">{{$loadrow->product_type}}</h6>
+    <div id="1" style="margin-top:-10px;font-size: 16px">
         <label >{{__('row')}} :</label>
-        <em style="font-size:35px;font-weight: bold;"> {{$loadrow->row}}</em></div>
-<label style="font-size: 20px">{{__('price')}} : </label>
-    <em style="font-size:35px;font-weight: bold;">{{$loadrow->product_price}} ریال</em><br>
-    <label style="font-size: 20px">{{__('car.number')}} :</label>
-    <em style="font-size:30px;font-weight: bold;">{{$loadrow->car_number}}</em><br>
-    <lable style="font-size: 20px" >{{__('driver.name')}} : </lable>
-    <em style="font-size:30px;font-weight: bold;">{{$loadrow->driver_name}}</em><br>
-    <lable style="font-size: 20px">{{__('membership.number')}} : </lable>
-    <em style="font-size:30px;font-weight: bold;">{{$loadrow->membership_number}}</em><br>
-    <lable style="font-size: 20px" >{{__('issue.date')}} : </lable>
-    <em style="font-size:30px;font-weight: bold;"> {{$loadrow->issue_date}}</em><br>
-<h6>مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6>
-</div>
+        <em style="font-size:40px;font-weight: bold;"> {{$loadrow->row}}</em></div>
+    <div id="1" style="margin-top:-40px">
+<label style="font-size: 16px">{{__('price')}} : </label>
+    <em style="font-size:40px;font-weight: bold;">{{$loadrow->product_price}} ریال</em></div>
+
+    <div id="1" style="margin-top:-40px">
+    <label style="font-size: 16px">{{__('car.number')}} :</label>
+    <em style="font-size:40px;font-weight: bold;">{{$loadrow->car_number}}</em></div>
+
+    <div id="1" style="margin-top:-40px">
+    <lable style="font-size: 16px" >{{__('driver.name')}} : </lable>
+    <em style="font-size:40px;font-weight: bold;">{{$loadrow->driver_name}}</em></div>
+
+    <div id="1" style="margin-top:-40px">
+    <lable style="font-size: 16px">{{__('membership.number')}} : </lable>
+    <em style="font-size:40px;font-weight: bold;">{{$loadrow->membership_number}}</em></div>
+    <div id="1" style="margin-top:-40px">
+    <lable style="font-size: 16px" >{{__('issue.date')}} : </lable>
+    <em style="font-size:40px;font-weight: bold;"> {{$loadrow->issue_date}}</em></div>
+    <div id="1" style="margin-top:-40px">
+<h6>مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6></div>
+</body>
 
 
 <script type="text/javascript">
@@ -26,4 +48,6 @@
     }
 
 </script>
+</body>
+</html>
 
