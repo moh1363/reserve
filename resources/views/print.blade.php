@@ -19,7 +19,7 @@
 
 </head>
 
-<body style="font-family:'yekan';font-size: 16px;width: 300px" dir="rtl" >
+<body style="font-family:'yekan';font-size: 16px;width: 300px;margin-top: -10px" dir="rtl" >
 <h6 style="font-size:18px;text-align: center">سامانه نوبت دهی </h6>
 <h6 style="font-size:18px;margin-top: -30px;text-align: center"> انبار نفت شهید آنجفی</h6>
 <h6 style=" margin-right: 16px;margin-top: -30px;font-size: 30px;font-weight: bold;text-align: center">{{$loadrow->product_type}}</h6>
@@ -46,7 +46,7 @@
 <div id="1" >
     <lable style="font-size: 16px">{{__('issue.date')}} :</lable>
     <em style="font-size:16px;font-weight: bold;" dir="ltr" > {{$loadrow->issue_date}}</em></div>
-<div id="1" >
+<div id="1" style="margin-top: -20px">
     <h6 style="font-weight: bold;font-size: 13px">مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6></div>
 </div>
 </body>
