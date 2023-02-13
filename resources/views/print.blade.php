@@ -43,7 +43,7 @@
     <em style="font-size:16px;font-weight: bold;">{{$loadrow->membership_number}}</em></div>
 <div id="1" >
     <lable style="font-size: 16px">{{__('issue.date')}} :</lable>
-    <em style="font-size:16px;font-weight: bold;"> {{$loadrow->issue_date}}</em></div>
+    <em style="font-size:16px;font-weight: bold;" dir="ltr" > {{$loadrow->issue_date}}</em></div>
 <div id="1" >
     <h6>مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6></div>
 </body>
