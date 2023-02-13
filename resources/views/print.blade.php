@@ -19,32 +19,32 @@
 
 </head>
 
-<body style="font-family:'yekan';font-size: 16px" dir="rtl">
-<h6 style="margin-right: 16px;font-size:18px">سامانه نوبت دهی </h6>
-<h6 style="margin-top:-20px;font-size:18px"> انبار نفت شهید آنجفی</h6>
-<h6 style=" margin-top:-60px;margin-right: 16px;font-size: 40px;font-weight: bold">{{$loadrow->product_type}}</h6>
-<div id="1" style="margin-top:-110px;font-size: 16px">
+<body style="font-family:'yekan';font-size: 16px;width: 300px" dir="rtl" >
+<h6 style="font-size:18px;text-align: center">سامانه نوبت دهی </h6>
+<h6 style="font-size:18px;margin-top: -30px;text-align: center"> انبار نفت شهید آنجفی</h6>
+<h6 style=" margin-right: 16px;margin-top: -30px;font-size: 30px;font-weight: bold;text-align: center">{{$loadrow->product_type}}</h6>
+<div id="1" style="font-size: 16px;margin-top: -80px">
     <label>{{__('row')}} :</label>
-    <em style="font-size:40px;font-weight: bold;"> {{$loadrow->row}}</em></div>
-<div id="1" style="margin-top:-20px">
+    <em style="font-size:30px;font-weight: bold;"> {{$loadrow->row}}</em></div>
+<div id="1" >
     <label style="font-size: 16px">{{__('price')}} : </label>
-    <em style="font-size:40px;font-weight: bold;">{{$loadrow->product_price}} ریال</em></div>
+    <em style="font-size:16px;font-weight: bold;">{{$loadrow->product_price}} ریال</em></div>
 
-<div id="1" style="margin-top:-20px">
+<div id="1" >
     <label style="font-size: 16px">{{__('car.number')}} :</label>
-    <em style="font-size:40px;font-weight: bold;">{{$loadrow->car_number}}</em></div>
+    <em style="font-size:16px;font-weight: bold;">{{$loadrow->car_number}}</em></div>
 
-<div id="1" style="margin-top:-20px">
+<div id="1" >
     <lable style="font-size: 16px">{{__('driver.name')}} :</lable>
-    <em style="font-size:40px;font-weight: bold;">{{$loadrow->driver_name}}</em></div>
+    <em style="font-size:16px;font-weight: bold;">{{$loadrow->driver_name}}</em></div>
 
-<div id="1" style="margin-top:-20px">
+<div id="1" >
     <lable style="font-size: 16px">{{__('membership.number')}} :</lable>
-    <em style="font-size:40px;font-weight: bold;">{{$loadrow->membership_number}}</em></div>
-<div id="1" style="margin-top:-20px">
+    <em style="font-size:16px;font-weight: bold;">{{$loadrow->membership_number}}</em></div>
+<div id="1" >
     <lable style="font-size: 16px">{{__('issue.date')}} :</lable>
-    <em style="font-size:40px;font-weight: bold;"> {{$loadrow->issue_date}}</em></div>
-<div id="1" style="margin-top:-20px">
+    <em style="font-size:16px;font-weight: bold;"> {{$loadrow->issue_date}}</em></div>
+<div id="1" >
     <h6>مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6></div>
 </body>
 
