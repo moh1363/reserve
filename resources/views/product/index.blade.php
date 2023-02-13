@@ -195,7 +195,7 @@
                             $('tbody').append( ' <tr>\
                                 <td>'+ i++ +'</td>\
                                 <td>'+item.name+'</td>\
-                                <td>'+item.price+'</td>\
+                                <td >'+item.price+'</td>\
                                 <td>'+item.expire_date+'</td>\
                                 <td>'+item.user.name+'</td>\
                                 <td>'+item.user.name+'</td>\
@@ -385,5 +385,6 @@
             }) ;
         });
     </script>
+
 
 @endsection

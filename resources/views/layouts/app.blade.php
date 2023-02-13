@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="fa">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Language" content="fa">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -10,6 +11,19 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'yekan';
+            src: url({{asset('fonts/yekan/BYekan.ttf')}}) format("truetype"),
+            url({{asset('fonts/yekan/Yekan.eot')}}) format("eot"),
+            url({{asset('fonts/yekan/Yekan.woff')}}) format("woff"),
+            url({{asset('fonts/yekan/Yekan.svg')}}) format("svg");
+        }
+
+        p.yekan{
+            font-family: yekan;
+        }
+    </style>
     <!-- Scripts -->
     <link rel="stylesheet" href="{{asset('/fontawesome/css/fontawesome-all.css')}}">
     <link rel="stylesheet" href="{{asset('/css/pelak.css')}}">
@@ -23,7 +37,7 @@
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body style="font-family: Yekan" dir="rtl">
+<body style="font-family: yekan" dir="rtl">
 <div id="app">
     <nav class="main-menu" dir="rtl">
         <div class="container">
