@@ -48,6 +48,7 @@
     <em style="font-size:16px;font-weight: bold;" dir="ltr" > {{$loadrow->issue_date}}</em></div>
 <div id="1" style="margin-top: -30px">
     <h6 style="font-weight: bold;font-size: 13px">مدت اعتبار قبض {{$loadrow->expire_date}} روز از تاریخ صدور می باشد.</h6></div>
+    <h6 style="font-weight: bold;font-size: 13px">   .. </h6></div>
 </div>
 </body>
 
